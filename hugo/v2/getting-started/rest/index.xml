@@ -1,0 +1,199 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Nuix REST SDK</title>
+    <link>/getting-started/rest.html</link>
+    <description>Recent content in Nuix REST SDK on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/getting-started/rest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Getting Started: Installing Nuix RESTful Service</title>
+      <link>/getting-started/rest/installation.html</link>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/installation.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Use the details and instructions in the following topics to download and install Nuix RESTful Service. The installer itself is a wizard-based program that provides on screen guidance to help you through the installation steps.&lt;/p&gt;
+&lt;p&gt;The key topics covered in this guide are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;System Requirements&lt;/li&gt;
+&lt;li&gt;Installing Nuix RESTful Service&lt;/li&gt;
+&lt;li&gt;Configuration setup&lt;/li&gt;
+&lt;li&gt;Locating API documentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For any concerns regarding installation, use, or licensing of the Nuix RESTful Service, or if you require further information, contact the Nuix support team at &lt;a href=&#34;https://nuix.service-now.com/support&#34;&gt;https://nuix.service-now.com/support&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;system-requirements&#34;&gt;System Requirements&lt;/h2&gt;
+&lt;p&gt;Before you begin using Nuix RESTful Service, it is important to properly install and configure any additional required software. System requirements as well as detailed instructions for installing and configuring Nuix RESTful Service are included within this guide.&lt;/p&gt;
+&lt;h3 id=&#34;hardware-requirements&#34;&gt;Hardware Requirements&lt;/h3&gt;
+&lt;p&gt;The hardware configurations described in the following table are recommended for Nuix RESTful Service.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Size&lt;/th&gt;
+&lt;th&gt;System Requirements&lt;/th&gt;
+&lt;th&gt;Tomcat + JVM memory&lt;/th&gt;
+&lt;th&gt;Workers&lt;/th&gt;
+&lt;th&gt;OS Memory&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Small&lt;/td&gt;
+&lt;td&gt;Laptop with 16 GB RAM, Dual Core processor SSD&lt;/td&gt;
+&lt;td&gt;6 GB&lt;/td&gt;
+&lt;td&gt;2, each with 3 GB memory&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Medium&lt;/td&gt;
+&lt;td&gt;Workstation with 32 GB RAM, Quad Core processor, 15 K RPM or SSD drives&lt;/td&gt;
+&lt;td&gt;8 GB&lt;/td&gt;
+&lt;td&gt;4, each with 5 GB memory&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Large&lt;/td&gt;
+&lt;td&gt;Server with 96-256 GB RAM, Quad core processor, 15 K RPM or SSD drives&lt;/td&gt;
+&lt;td&gt;20-60 GB&lt;/td&gt;
+&lt;td&gt;8, each with 8-16 GB memory&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;software-requirements&#34;&gt;Software Requirements&lt;/h3&gt;
+&lt;p&gt;The following software is required:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Licensing:
+&lt;ul&gt;
+&lt;li&gt;Nuix Management Server (NMS) 9.0 or above for server-based licensing.
+&lt;ul&gt;
+&lt;li&gt;Download here: &lt;a href=&#34;https://download.nuix.com/releases/server&#34;&gt;https://download.nuix.com/releases/server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Refer to the Installing Management Server section of the Nuix Management Server User Guide for installation instructions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nuix Cloud License Server (CLS) &lt;a href=&#34;https://my.nuix.com&#34;&gt;https://my.nuix.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: Nuix OCR Add-on using ABBYY to enable Optical Character Recognition.
+&lt;ul&gt;
+&lt;li&gt;Available for download at &lt;a href=&#34;https://download.nuix.com/releases/addons&#34;&gt;https://download.nuix.com/releases/addons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Note&lt;/strong&gt;: If Installing on Windows, the &lt;a href=&#34;https://www.microsoft.com/en-us/download/details.aspx?id=14632&#34;&gt;Microsoft Visual C++ 2010 Redistributable Package (x64)&lt;/a&gt; must be installed prior to installing the Nuix OCR Add-on.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: Microsoft Office 2007/2010 to enable image rendering if you prefer not to use the Nuix internal rendering engine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;operating-system-support&#34;&gt;Operating System Support&lt;/h3&gt;
+&lt;p&gt;Nuix RESTful Service supports the latest versions of each of the following operating systems.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Operating System&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Microsoft Windows 64-bit&lt;/td&gt;
+&lt;td&gt;Windows 10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Windows Server 2019&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Windows Server 2016 R2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Debian&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ubuntu&lt;/td&gt;
+&lt;td&gt;18.04 LTS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;16.04 LTS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;authentication-prerequisites&#34;&gt;Authentication prerequisites&lt;/h3&gt;
+&lt;p&gt;Nuix RESTful Service only supports Basic authentication. Refer to the following prerequisites when configuring NMS.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+NTLM authentication is not supported.
+&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nuix Management Server:
+&lt;ul&gt;
+&lt;li&gt;Install Nuix Management Server (NMS) version 8.6 or later.&lt;/li&gt;
+&lt;li&gt;Ensure that the Authentication mode is set to Basic built-in form authentication.&lt;/li&gt;
+&lt;li&gt;Ensure that the NMS instance is broadcasting on the same address from which clients, including Nuix RESTful Service, will access it.&lt;/li&gt;
+&lt;li&gt;Create an admin user in NMS for basic authentication.&lt;/li&gt;
+&lt;li&gt;Ensure that licenses are enabled for users and groups that request licenses through Nuix RESTful services.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To purchase a license, contact &lt;a href=&#34;mailto:sales@nuix.com&#34;&gt;sales@nuix.com&lt;/a&gt; for more information.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Configuring Nuix RESTful Service</title>
+      <link>/getting-started/rest/configuration.html</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/configuration.html</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: User Scripts</title>
+      <link>/getting-started/rest/scripting.html</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/scripting.html</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Quick Start Guides</title>
+      <link>/getting-started/rest/quick_start.html</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;The topics in this section provide instructions, guidance, and examples for accessing and using the core features of the Nuix RESTful API. For each endpoint described within this guide, instructions are provided using simple cURL commands. Any tool capable of making HTTP calls, such as Postman, can be used to achieve the same results.&lt;/p&gt;
+&lt;p&gt;Use the API reference documentation embedded in your instance of Nuix RESTful Service, &lt;a href=&#34;localhost:8080/nuix-restful-service/svc/docs&#34;&gt;localhost:8080/nuix-restful-service/svc/docs&lt;/a&gt;, to supplement the instructions in these guides.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
