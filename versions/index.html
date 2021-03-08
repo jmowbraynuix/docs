@@ -11,6 +11,18 @@
         fetch('all-versions.json')
             .then(response => response.json())
             .then(allVersions => {
+                allVersions.sort((a, b) => {
+                const vA = a.version.toLowerCase();
+                const vB = b.version.toLowerCase();
+                    if (vA < vB) {
+                        return -1;
+                    }
+                    if (vA > vB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                allVersions.reverse();
                 allVersions.forEach(v => {
                     const li = document.createElement('li');
                     li.innerHTML = `<a href="${v.url}">${v.version}</a>`;
