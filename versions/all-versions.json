@@ -1,10 +1,10 @@
 [
     {
-        "version": "v1",
-        "url": "https://jmowbraynuix.github.io/docs/hugo/v1/"
+        "version": "v9.1",
+        "url": "https://jmowbraynuix.github.io/docs/versions/9.1/"
     },
     {
-        "version": "v2",
-        "url": "https://jmowbraynuix.github.io/docs/hugo/v2/"
+        "version": "v9.0",
+        "url": "https://jmowbraynuix.github.io/docs/versions/9.0/"
     }
 ]

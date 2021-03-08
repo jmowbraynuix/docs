@@ -1,0 +1,581 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Configuring Nuix RESTful Service</title>
+    <link>/getting-started/rest/configuration.html</link>
+    <description>Recent content in Configuring Nuix RESTful Service on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/getting-started/rest/configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Getting Started: Licensing Configuration</title>
+      <link>/getting-started/rest/configuration/licenseconfiguration.html</link>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/configuration/licenseconfiguration.html</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;updating-nms-connections&#34;&gt;Updating NMS Connections&lt;/h2&gt;
+&lt;p&gt;After installing Nuix RESTful Service, you may need to eventually update the URL or credentials of the Nuix Management Server (NMS) being used for licensing. If this occurs, use the details within this section to update your NMS connection information.&lt;/p&gt;
+&lt;p&gt;Use the following procedure to update the NMS connection used by Nuix RESTful Service:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Close the application or stop the service to ensure that Nuix RESTful Service is not running.&lt;/li&gt;
+&lt;li&gt;Navigate to the settings directory within the Nuix RESTful Service installation directory.
+&lt;strong&gt;Default path&lt;/strong&gt;: &lt;code&gt;&amp;lt;InstalDir&amp;gt;/Nuix/Nuix RESTful Service/settings&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Locate and open the &lt;code&gt;application.properties&lt;/code&gt; file within a text editor.&lt;/li&gt;
+&lt;li&gt;Within the file, locate and update the following property with the URL of the new NMS instance, including port number.
+&lt;pre&gt;&lt;code&gt;nuix.registry.servers=&amp;lt;ServerURL&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Save and exit the file.&lt;/li&gt;
+&lt;li&gt;Restart Nuix RESTful Service.&lt;/li&gt;
+&lt;li&gt;If the credentials to access the NMS instance have changed, continue with the following procedure.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Use the following procedure to update the credentials associated with the specified NMS connection:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;With Nuix RESTful Service running, log in and acquire a license.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Using the acquired authentication token, call the &lt;code&gt;licenseServer/credentials&lt;/code&gt; endpoint, providing updated credentials for your configured NMS instance.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PUT/v1/licenseServer/credentials
+{
+  &amp;quot;username&amp;quot;: &amp;quot;newuser&amp;quot;,
+  &amp;quot;password&amp;quot;: &amp;quot;newsecurepassword&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the call is made successfully, the provided password is automatically encrypted and added to the Nuix RESTful Service &lt;code&gt;application.properties&lt;/code&gt; file along with the provided username, replacing any previous values.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    The newly encrypted password value is stored within a new &lt;code&gt;nuix.license.server.securePassword&lt;/code&gt; property. The previously used property &lt;code&gt;nuix.license.server.password&lt;/code&gt; used to store the plain text password will be left blank.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;connecting-to-nuix-cloud-license-server-cls&#34;&gt;Connecting to Nuix Cloud License Server (CLS)&lt;/h2&gt;
+&lt;p&gt;Nuix RESTful Service can be configured to acquire licenses from either an available Nuix Management Server (NMS) or from the Nuix Cloud License Server. By default, a NMS connection can be established during installation, however, CLS can also be configured after the installation completes by following the procedure outlined within this section.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prerequisites&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;To use CLS for licensing, you must have a valid CLS user account and credentials to connect to the Nuix portal (&lt;a href=&#34;https://my.nuix.com&#34;&gt;https://my.nuix.com&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Configuration&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Use the following procedure to configure Nuix RESTful Service to retrieve licenses from CLS:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the settings directory within the location where Nuix RESTful Service is installed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service\settings&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service/settings&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Locate and open the &lt;code&gt;application.properties&lt;/code&gt; file within a text editor.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update the following properties with values based on the license source method being used.&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;code&gt;nuix.license.source=&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;Specify the connection method being used for licensing. Valid values include:
+&lt;ul&gt;
+&lt;li&gt;cloud-server - Connect directly to CLS&lt;/li&gt;
+&lt;li&gt;local-relay-server-local-users -
+Connect to an NMS instance that has been configured as a relay server to retrieve licenses from the CLS using NMS user authentication.&lt;/li&gt;
+&lt;li&gt;local-relay-server-cls-users - Connect to an NMS instance that has been configured as a relay server to retrieve licenses from CLS using CLS user authentication.&lt;/li&gt;
+&lt;li&gt;server - (default) Connect to an NMS instance for licensing.
+&lt;strong&gt;Note&lt;/strong&gt;: For information on configuring NMS as a relay server, see the &lt;a href=&#34;&#34;&gt;Cloud License Server Getting Started Guide&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;nuix.registry.servers=&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;The URL used to access the License server.&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;nuix.license.server.username=&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;Username of the CLS or NMS account being used for license acquisition.&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;nuix.license.server.password=&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;The password associated with the license server username.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Save and exit the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Restart Nuix RESTful Service for the changes to take effect.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Clustering</title>
+      <link>/getting-started/rest/configuration/clusteringsetup.html</link>
+      <pubDate>Tue, 23 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/configuration/clusteringsetup.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Nuix RESTful Service supports clustered installations to enable distributed workloads across multiple nodes within a cluster. When configured as a cluster, requests submitted to REST are managed and distributed across the cluster with no further action from the user.&lt;/p&gt;
+&lt;h2 id=&#34;clustering-concepts&#34;&gt;Clustering Concepts&lt;/h2&gt;
+&lt;p&gt;A clustered environment consists of two or more Nuix RESTful Service instances that have been configured to communicate and share data with each other over a network. Each instance represents a node within the cluster. Nodes are further classified by roles, which are defined during setup and determine what function the node can perform within the cluster. The following two roles are available.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Producer role&lt;/strong&gt;: Nodes that are assigned the producer role function as the primary server (base URL) for all calls submitted to the API. Producer nodes are responsible for receiving incoming calls, queuing requests, processing non-cluster-enabled functions, and relaying results from across the cluster back to the user.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consumer role&lt;/strong&gt;: Nodes that are assigned the consumer role are responsible for performing the cluster-enabled requests in the job queue based on the node&amp;rsquo;s capacity and availability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As requests are submitted to the cluster, they are picked up and processed immediately. If the cluster is at capacity, the requests will instead be added to a queue and processed by the first consumer node that becomes available or gains additional capacity.&lt;/p&gt;
+&lt;p&gt;Consumer nodes can accept new requests if the following criteria are met:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The request is for a cluster-enabled function.&lt;/li&gt;
+&lt;li&gt;The request can be performed immediately.&lt;/li&gt;
+&lt;li&gt;The case associated with a request is available to the node.&lt;/li&gt;
+&lt;li&gt;The node has capacity, which is defined by the following restrictions:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Worker-based tasks&lt;/strong&gt;: Limited to one request per node simultaneously.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-worker-based tasks&lt;/strong&gt;: Can perform multiple requests simultaneously.&lt;/li&gt;
+&lt;li&gt;Based on the resources available to the node, it may be capable of performing both types of requests simultaneously.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If any of the criteria cannot be met by a consumer node, the request will remain in the queue until another node within the cluster becomes available.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    Communication between nodes is not encrypted by default.
+
+&lt;/div&gt;
+
+&lt;h3 id=&#34;server-tags&#34;&gt;Server Tags&lt;/h3&gt;
+&lt;p&gt;To optimize and steer the distribution of requests throughout a cluster, server tags can be implemented to control the type of requests that are performed by specific nodes. Server tags are simple user-defined labels, such as &lt;em&gt;OCR&lt;/em&gt; or &lt;em&gt;Worker-Based&lt;/em&gt;, that are applied to consumer nodes during clustering setup.&lt;/p&gt;
+&lt;p&gt;Once configured, requests that are submitted with a specific server tag will be routed to and processed by a node that has a matching tag. Requests submitted without a tag will continue to be processed by the first available consumer node.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+
+    &lt;p&gt;Requests that are submitted with a server tag that does not exist within the cluster will never be processed.&lt;/p&gt;
+&lt;p&gt;To identify server tags that exist within the cluster before submitting a request, see &lt;a href=&#34;#viewing-the-cluster&#34;&gt;Viewing the Cluster&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;p&gt;The practice of server tagging can be beneficial if trying to prioritize calls that are submitted to the API. For instance, separating worker-based requests from non-worker-based requests. Functions that require workers, such as ingestion, OCR, and exports can often be long running resource intensive processes. By using server tags, these types of requests can be steered towards dedicated nodes within the cluster that are better provisioned to handle these types of jobs.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+
+    Nodes that have been configured with server tags are not restricted from processing untagged requests. If a request is submitted to the cluster and a tagged node is the first available node to meet all criteria required to accept a request, it will do so.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;prerequisites-for-creating-a-cluster&#34;&gt;Prerequisites for Creating a Cluster&lt;/h2&gt;
+&lt;p&gt;To set up a Nuix RESTful Service clustered environment, the following prerequisites must be addressed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Two or more installed instances of Nuix RESTful Service.
+&lt;ul&gt;
+&lt;li&gt;The IP addresses of all nodes included in the cluster must be known to complete the following configurations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Access to Nuix Licensing using any of the following options:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#updating-nms-connections&#34;&gt;Nuix Management Server (NMS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#connecting-to-nuix-cloud-license-server-cls&#34;&gt;Nuix Cloud License Server (CLS)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Networked file storage for shared resources.&lt;/li&gt;
+&lt;li&gt;Elasticsearch v7.8.1&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Important&lt;/h4&gt;
+
+    Only Elasticsearch based cases are supported within clustered environments.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;network-share-requirements&#34;&gt;Network Share Requirements&lt;/h2&gt;
+&lt;p&gt;Clustering requires the use of networked file storage to ensure all nodes within the cluster have access to the same data. Before you begin, ensure that a network file share is available and accessible from all nodes included in the Nuix RESTful Service cluster.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    The location of all network shares must be accessible using UNC paths.
+
+&lt;/div&gt;
+
+&lt;p&gt;The following directories must be created and configured as individual network shares:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Share Name&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;source data/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Location to store raw evidence that has not yet been processed into a case.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;cases/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;An Elasticsearch based inventory location where cases are created and stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;user-data/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Location to store artifacts and profiles that are used when processing evidence.&lt;br&gt; The &lt;code&gt;user-data&lt;/code&gt; directory is comprised of the following sub-directories that each&lt;br&gt; store a different type of artifact.&lt;br&gt;&lt;br&gt; &lt;strong&gt;Tip&lt;/strong&gt;: Create only the subdirectories that will be used in your workflows.&lt;br&gt;&lt;br&gt;&lt;code&gt;|--Digest Lists/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Imaging Profiles/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--OCR Profiles/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Processing Profiles/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Production Profiles/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Reports/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Shingle Lists/&lt;/code&gt;&lt;br&gt; &lt;code&gt;|--Word Lists/&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;exports/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Location to store exports generated by Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;thumbnails/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Location to store thumbnails that are generated within a case.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;scripts/&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Location to store user-generated scripts for use with Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;configuring-rest-instances&#34;&gt;Configuring REST Instances&lt;/h2&gt;
+&lt;p&gt;After all prerequisites have been addressed, use the following procedure to set up a clustered Nuix RESTful Service environment.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    This procedure must be performed on each node within the cluster.
+
+&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Ensure that the instance of Nuix RESTful Service being modified has been stopped.&lt;/li&gt;
+&lt;li&gt;Navigate to the settings directory within the Nuix RESTful Service installation.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code&gt;&amp;lt;InstalDir&amp;gt;/Nuix/Nuix RESTful Service/settings&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service/settings&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Open the &lt;code&gt;application.properties&lt;/code&gt; file within a text editor.&lt;/li&gt;
+&lt;li&gt;Modify the file by configuring the following properties to enable clustering and identify the role of the node within the cluster.
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Enable the node to participate in the cluster by adding the following property:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;cluster.enabled&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add one of the following properties to specify the node&amp;rsquo;s role within the cluster:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Producer role&lt;/strong&gt;: The primary server for all calls submitted to the API. Producer nodes are responsible for receiving incoming calls, queuing requests, and relaying results from across the cluster back to the user.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consumer role&lt;/strong&gt;: Consumer nodes are responsible for performing the queued requests based on the node&amp;rsquo;s availability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;cluster.role.producer&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+cluster.role.consumer&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: The cluster must contain at least one producer and consumer node.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optionally, define a server tag that can be used to steer requests to this specific node.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;server.tags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;Worker-based
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the node is expected to receive multiple types of requests, a comma separated list of tags can also be defined:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;server.tags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;Worker-based,OCR,Export
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update the values of the following existing properties to reflect the UNC paths of the network share locations that were previously created .&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;exportsFolder&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;\\&lt;/span&gt;10.130.138.177&lt;span style=&#34;color:#4e9a06&#34;&gt;\e&lt;/span&gt;xports
+&lt;span style=&#34;color:#000&#34;&gt;inventoryLocations&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;\\&lt;/span&gt;10.130.138.177&lt;span style=&#34;color:#4e9a06&#34;&gt;\c&lt;/span&gt;ases
+&lt;span style=&#34;color:#000&#34;&gt;searchThumbnailsExportDirectory&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;\\&lt;/span&gt;10.130.138.177&lt;span style=&#34;color:#4e9a06&#34;&gt;\t&lt;/span&gt;humbnails
+&lt;span style=&#34;color:#000&#34;&gt;userScriptsLocation&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;\\&lt;/span&gt;10.130.138.177&lt;span style=&#34;color:#4e9a06&#34;&gt;\s&lt;/span&gt;cripts&lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;nuix.engine.userDataDirs&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;\\&lt;/span&gt;10.130.138.177&lt;span style=&#34;color:#4e9a06&#34;&gt;\u&lt;/span&gt;ser-data&lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the following property to identify nodes within the cluster. Provide a comma-separated list of IP addresses that represent all nodes included within the cluster.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;hazelcastTcpIpMembers&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;IPofNode1&amp;gt;,&amp;lt;IPofNode2&amp;gt;,&amp;lt;IPofNode3&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify that the &lt;code&gt;publicURL&lt;/code&gt; property is set to an address that is accessible from all other nodes within the cluster.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Save and exit the file.&lt;/li&gt;
+&lt;li&gt;Restart Nuix RESTful Service.&lt;/li&gt;
+&lt;li&gt;Repeat this procedure until all nodes within the cluster have been configured.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;viewing-the-cluster&#34;&gt;Viewing the Cluster&lt;/h2&gt;
+&lt;p&gt;After all nodes within your environment have been configured for clustering, you can check your cluster by submitting a &lt;strong&gt;GET&lt;/strong&gt; request to the &lt;code&gt;/cluster&lt;/code&gt; endpoint. This request should be submitted to a node within the cluster that has been configured with the producer role.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X GET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://10.30.100.58:8080/nuix-restful-service/svc/v1/cluster&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After submitting the request, details about each available node are returned, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The name and location of the node.&lt;/li&gt;
+&lt;li&gt;The port where the node is operating.&lt;/li&gt;
+&lt;li&gt;Any server tags associated with the node.&lt;/li&gt;
+&lt;li&gt;A unique server GUID, useful for identifying a specific node.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;nodes&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostAddress&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;192.168.7.32&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostName&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node01.nuix.com&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5601&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;details&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;637edbff-3e1c-4f63-921e-da022a763fbf&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;publicURL&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://10.30.100.58:8080&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;REST-Node-1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;tags&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;OCR&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Export&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;],&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;210ee909-3cdf-3f3a-b973-2cf4d7c7aea2&amp;#34;&lt;/span&gt;
+            &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;},&lt;/span&gt;
+                &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostAddress&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;192.168.7.12&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostName&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node02.nuix.com&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5602&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;details&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;432iunff-5h1a-8j67-738b-ic9344f643unf&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;publicURL&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://10.30.100.83:8080&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;REST-Node-2&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;tags&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Worker&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;based&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;],&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;468uj828-7uct-6h1s-m878-5hg5d9v6ema1&amp;#34;&lt;/span&gt;
+            &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;submitting-requests-to-the-cluster&#34;&gt;Submitting Requests to the Cluster&lt;/h2&gt;
+&lt;p&gt;When operating within a clustered Nuix RESTful Service environment, the process of submitting requests is no different from interacting with a single instance of Nuix REST.&lt;/p&gt;
+&lt;p&gt;To get started, you need to know the location of a node within the cluster that has been designated as a &lt;em&gt;Producer&lt;/em&gt;. If multiple producers are available, any one can be used. Once identified, all calls to the cluster should be made to that node.&lt;/p&gt;
+&lt;p&gt;After a request is received, if the call is for a cluster-enabled function, the request will be added to the queue for the first available consumer node to pick up. If the call is for a non-cluster-enabled function, the producer node will simply perform the request itself.&lt;/p&gt;
+&lt;p&gt;Cluster-enabled functions are those that can be run asynchronously by any consumer node within the cluster. These functions are identified within the embedded API reference documentation (&lt;a href=&#34;http://localhost:8080/nuix-restful-service/svc/docs&#34;&gt;localhost:8080/nuix-restful-service/svc/docs&lt;/a&gt;) using the &lt;strong&gt;Cluster Enabled Operation&lt;/strong&gt; label.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../images/clusterEnabledOperationLabel.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;submitting-requests-with-server-tags&#34;&gt;Submitting Requests with Server Tags&lt;/h3&gt;
+&lt;p&gt;If server tags have been implemented within your cluster, you can use them in your calls by defining the following RAW data in the body of your requests.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;--data-raw 
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;restClusterSettings&amp;#34;: {
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      &amp;#34;nodeTags&amp;#34;: {
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          &amp;#34;defaultTags&amp;#34;: [&amp;#34;Worker-based&amp;#34;]
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      }
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  },
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Unified Logging with Elasticsearch</title>
+      <link>/getting-started/rest/configuration/unifiedlogging.html</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/configuration/unifiedlogging.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Use the following topic to enable unified logging using the Elasticsearch ELK stack.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Elasticsearch v7.8.1&lt;/li&gt;
+&lt;li&gt;Filebeat v7.8.1&lt;/li&gt;
+&lt;li&gt;Kibana v7.8.1&lt;/li&gt;
+&lt;li&gt;Nuix REST v9.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This topic assumes that you already have a running instance of Nuix RESTful Service version 9.0 installed at the following location:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The installation and configuration of Elasticsearch and Kibana are outside the scope of this topic.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    Before proceeding, ensure that the installed Nuix-REST service is not running.
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;windows-filebeat-installation-and-configuration&#34;&gt;Windows Filebeat Installation and Configuration&lt;/h2&gt;
+&lt;p&gt;Use the following procedure to install Filebeat on Windows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download Filebeat
+(&lt;a href=&#34;https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.8.1-windows-x86_64.zip&#34;&gt;https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.8.1-windows-x86_64.zip&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Unzip the Filebeat installer to &lt;code&gt;C:\Program Files\Filebeat&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the &lt;code&gt;C:\Program Files\Filebeat&lt;/code&gt; installation directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Rename &lt;code&gt;filebeat.yml&lt;/code&gt; to &lt;code&gt;filebeat.yml.backup&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new &lt;code&gt;filebeat.yml&lt;/code&gt; file in &lt;code&gt;C:\Program Files\Filebeat&lt;/code&gt; and include the following configuration.&lt;/p&gt;
+ &lt;details&gt;
+   &lt;summary&gt;Click to View Windows Filebeat Configuration&lt;/summary&gt;
+   &lt;h5&gt;filebeat.yaml&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;filebeat.inputs&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;-
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;  type: log&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;enabled&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;paths&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;C:\Program Files\Nuix\Nuix RESTful Service\logs\**\*.json&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.message_key&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;message&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.keys_under_root&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.overwrite_keys&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.add_error_key&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;processors&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;rename&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fields&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;file.source&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;ignore_missing&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;output.elasticsearch&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hosts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;masterdata-node-0.elasticsearch.aws.chdev.nuix.com&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt; &lt;/details&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open a command prompt with elevated administrative priviledges and navigate to &lt;code&gt;C:\Program Files\Filebeat&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Enter the following command to install Filebeat in UnRestricted mode. Choose [&lt;strong&gt;R&lt;/strong&gt;] to Run Once.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;PowerShell.exe -ExecutionPolicy UnRestricted -File .&lt;span style=&#34;color:#4e9a06&#34;&gt;\i&lt;/span&gt;nstall-service-filebeat.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Filebeat is now installed and configured as a service but is not yet running.&lt;/p&gt;
+&lt;h2 id=&#34;linux-filebeat-installation-and-configuration&#34;&gt;Linux Filebeat Installation and Configuration&lt;/h2&gt;
+&lt;p&gt;Use the following procedure to install Filebeat on Linux:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download Filebeat using the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.10.1-amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install Filebeat using the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo dpkg -i filebeat-7.8.1-amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the installation directory and create a backup of the Filebeat configuration file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; /etc/filebeat
+sudo mv filebeat.yml filebeat.yml.backup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Within the same directory, create a new &lt;code&gt;filebeat.yml&lt;/code&gt; file and include the following configuration.&lt;/p&gt;
+ &lt;details&gt;
+   &lt;summary&gt;Click to View Linux Filebeat Configuration&lt;/summary&gt;
+   &lt;h5&gt;filebeat.yaml&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;filebeat.inputs&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;-
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;  type: log&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;enabled&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;paths&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/opt/nuix-restful-service/logs/**/*.json&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.message_key&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;message&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.keys_under_root&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.overwrite_keys&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;json.add_error_key&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;processors&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;rename&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;fields&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;file&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;file.source&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;ignore_missing&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;output.elasticsearch&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;hosts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;masterdata-node-0.elasticsearch.aws.chdev.nuix.com&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt; &lt;/details&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Filebeat is now installed and configured as a service but is not yet running.&lt;/p&gt;
+&lt;h2 id=&#34;nuix-restful-service-configuration-changes&#34;&gt;Nuix RESTful Service Configuration Changes&lt;/h2&gt;
+&lt;p&gt;Use the following procedures to configure the logging settings within your instance of Nuix RESTful Service.&lt;/p&gt;
+&lt;h3 id=&#34;application-log-configuration&#34;&gt;Application Log Configuration&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to the settings directory within your Nuix RESTful Service installation and locate &lt;code&gt;application.properties&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service\settings\application.properties&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service/settings/application.properties&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Using a text editor with elevated administrative priviledges, open &lt;code&gt;application.properties&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the following property to the file to configure Nuix RESTful Service to generate JSON formatted log files.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;logging&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;json&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;enabled&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After adding this property and saving the file, the new defaut log becomes &lt;code&gt;${logging.path}\nuix-rest.log.json&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;worker-log-configuration&#34;&gt;Worker Log Configuration&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to the Nuix RESTful Service installation directory and locate the &lt;code&gt;Nuix-REST.vmoptions&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service\Nuix-REST.vmoptions&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service/nuix-rest.vmoptions&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Using a text editor with elevated administrative priviledges, open &lt;code&gt;Nuix-REST.vmoptions&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Locate the &lt;code&gt;-Dnuix.worker.jvm.arguments&lt;/code&gt; property and make the following modification to change its value from &lt;code&gt;log4j.properties&lt;/code&gt; to the &lt;code&gt;log4j-logstash.xml&lt;/code&gt; configuration that ships with the application. This change configures workers to generate JSON formatted log files.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Windows&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Dnuix&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;worker&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jvm&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;arguments&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=-&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Dlog4j&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;configuration&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a40000&#34;&gt;/C:/Program%20Files/Nuix/Nuix%20RESTful%20Service/nuix-engine/config/log4j-logstash.xml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Dnuix&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;worker&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jvm&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;arguments&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=-&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Dlog4j&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;configuration&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a40000&#34;&gt;/opt/nuix-restful-service/nuix-engine/config/log4j-logstash.xml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After modifying this property and saving the file, the new default worker log becomes &lt;code&gt;${logging.path}\job-${UUID}\${UUID2}.&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;services&#34;&gt;Services&lt;/h2&gt;
+&lt;p&gt;Start up all installed services once Filebeat and Nuix RESTful Service have been installed and configured.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start the Nuix REST service
+&lt;ul&gt;
+&lt;li&gt;On Linux: &lt;code&gt;sudo service nuix-rest start&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Start the Filebeat service
+&lt;ul&gt;
+&lt;li&gt;On Linux: &lt;code&gt;sudo service filebeat start&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;log-viewing&#34;&gt;Log Viewing&lt;/h2&gt;
+&lt;p&gt;Logs can now be viewed using Kibana.  The installation and configuration of Kibana is outside the scope of this article, however, you can quickly look at logs if you have Docker installed using the following Docker command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker run -it &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;ELASTICSEARCH_HOSTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://your.elasticsearch.node.com:9200 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -p 5601:5601 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;XPACK_SECURITY_ENABLED&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;MONITORING_ENABLED&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;XPACK_ML_ENABLED&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;XPACK_GRAPH_ENABLED&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    -e &lt;span style=&#34;color:#000&#34;&gt;XPACK_REPORTING_ENABLED&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;false&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    docker.elastic.co/kibana/kibana:7.8.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In a browser, navigate to http://localhost:5601&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

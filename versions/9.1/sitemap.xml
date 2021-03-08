@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/getting-started/rest.html</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/case_creation/casecreation.html</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/clustering/viewcluster.html</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/about.html</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/scripting/introduction.html</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/installation/windows.html</loc>
+    <lastmod>2021-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start/environmentsetup.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/overview.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/installation.html</loc>
+    <lastmod>2020-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/configuration/licenseconfiguration.html</loc>
+    <lastmod>2020-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/scripting/elasticsearchcasesubset.html</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/scripting/tagging.html</loc>
+    <lastmod>2020-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/configuration/clusteringsetup.html</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/configuration.html</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started.html</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/case_creation/compoundcasecreation.html</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/clustering/steering.html</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/licenseverification.html</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/installation/linux.html</loc>
+    <lastmod>2021-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start/checkingserverstatus.html</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/running_scripts/running-scripts.html</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/scripting/customprocessing.html</loc>
+    <lastmod>2020-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/case_creation/elasticcasecreation.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction.html</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/authentication.html</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/case_creation.html</loc>
+    <lastmod>2021-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/scripting.html</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/installation/docker.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start/licensemanagement.html</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/java_engine/java-engine.html</loc>
+    <lastmod>2017-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/case_creation/elasticcompoundcasecreation.html</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/fileingestion.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start/inventorymanagement.html</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/search.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/configuration/unifiedlogging.html</loc>
+    <lastmod>2021-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/quick_start/processingdata.html</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/exclusions.html</loc>
+    <lastmod>2021-02-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/examples.html</loc>
+    <lastmod>2017-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/itemsets.html</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials.html</loc>
+    <lastmod>2017-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/ocr.html</loc>
+    <lastmod>2021-02-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/tagging.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/productionset.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/casesubset.html</loc>
+    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/export.html</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/rest/introduction/clustering.html</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/reference/_openapi.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/reference.html</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+</urlset>

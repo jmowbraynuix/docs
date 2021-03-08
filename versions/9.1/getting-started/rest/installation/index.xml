@@ -1,0 +1,859 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Installing Nuix RESTful Service</title>
+    <link>/getting-started/rest/installation.html</link>
+    <description>Recent content in Installing Nuix RESTful Service on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/getting-started/rest/installation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Getting Started: Installing on Windows</title>
+      <link>/getting-started/rest/installation/windows.html</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/installation/windows.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Nuix RESTful Service provides a wizard-based installer that guides you through the installation and initial configuration of the application. Follow the steps in this section to complete your installation of Nuix RESTful Service in a Windows environment.&lt;/p&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;If performing an upgrade, ensure that a backup of your existing Java Options is made prior to installation as these values will be overwritten. These values can be found in the bin/setenv.bat file within your installation directory. See &lt;a href=&#34;#verifying-java-options&#34;&gt;Verifying Java Options&lt;/a&gt; after completing your upgrade for steps on adding these configurations back to installation.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;To get started, perform the following steps to install:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the Windows installer from the &lt;a href=&#34;https://download.nuix.com/releases/rest-oem/&#34;&gt;Nuix Customer Portal&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Browse to the location that contains the installer.&lt;/li&gt;
+&lt;li&gt;Right-click on the installer and choose &lt;strong&gt;Run as administrator&lt;/strong&gt;, even if you are already running as an administrator.
+The installer may take a moment to prepare for the installation. When the initial preparation is complete, follow the steps within the wizard to complete the installation.&lt;/li&gt;
+&lt;li&gt;From the Welcome Screen, click &lt;strong&gt;Next&lt;/strong&gt; to begin.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    &lt;p&gt;If a previous version of Nuix RESTful Service is already installed, the following options are provided:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the existing installation&lt;/li&gt;
+&lt;li&gt;Create a new installation in a separate location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Choosing to update will bypass all further configuration steps within the wizard and begin the installation process using the configurations defined within the previous installation.&lt;/p&gt;
+
+
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;Read and understand the terms included in the Nuix End User License Agreement.
+&lt;ul&gt;
+&lt;li&gt;If you agree to the terms, select &lt;strong&gt;I accept the agreement&lt;/strong&gt;, and click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If installing for the first time, choose a location to install Nuix RESTful Service.
+&lt;ul&gt;
+&lt;li&gt;Click &lt;strong&gt;Next&lt;/strong&gt; to accept the default location and proceed.&lt;/li&gt;
+&lt;li&gt;Alternatively, click &lt;strong&gt;Browse&lt;/strong&gt; to choose a specific location to install the application files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Next&lt;/strong&gt; to begin the installation.&lt;/li&gt;
+&lt;li&gt;On the License Server Configuration screen, provide the following details then click &lt;strong&gt;Next&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server address&lt;/strong&gt;: The URL used to access a configured Nuix Management Server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Server port&lt;/strong&gt;: The server port used to access the configured Nuix Management Server.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    To configure Nuix RESTful Service to use CLS for licensing, see &lt;a href=&#34;../configuration/licenseconfiguration.html#connecting-to-nuix-cloud-license-server-cls&#34;&gt;Connecting to Nuix Cloud License Server (CLS)&lt;/a&gt; after completing the installation.
+
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enter credentials for an account that has access to the specified Licensing Server, then click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Review and make changes, if necessary, to the details provided on the Java &amp;amp; Folder Options screen.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Java Options&lt;/td&gt;
+&lt;td&gt;Optimize the Java settings used by Nuix RESTful Service to suit your hardware specifications. Define one argument per line. &lt;br&gt; Default settings are recommended for most configurations. For help or assistance with tuning your JVM settings, contact the Nuix Support team at &lt;a href=&#34;https://nuix.service-now.com/support&#34;&gt;https://nuix.service-now.com/support&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IP Address or Hostname&lt;/td&gt;
+&lt;td&gt;The URL that will be used to access Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Connection Timeout&lt;/td&gt;
+&lt;td&gt;Specify the amount of time that REST should wait for a response after accepting a connection. Use a value of -1 to indicate no timeout.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HTTP Port&lt;/td&gt;
+&lt;td&gt;The server port used to access Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Case Directory&lt;/td&gt;
+&lt;td&gt;Specify a location where case files are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;User Scripts Directory&lt;/td&gt;
+&lt;td&gt;Specify a location where user generated scripts are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Logs Directory&lt;/td&gt;
+&lt;td&gt;Specify a location to save logs generated by Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;After reviewing the Java &amp;amp; Folder Options screen, click Next to continue.&lt;/li&gt;
+&lt;li&gt;Specify how Nuix RESTful Service should be run:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Service&lt;/td&gt;
+&lt;td&gt;Run Nuix RESTful Service in the background as a Windows service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Application&lt;/td&gt;
+&lt;td&gt;Run Nuix RESTful Service as a standalone application. See Starting in Application Mode after installation completes for details on starting the application.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Start Service&lt;/td&gt;
+&lt;td&gt;Select this checkbox, if the Service option was selected, to start the Nuix RESTful Service when installation completes.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;13&#34;&gt;
+&lt;li&gt;Click Finish to complete the setup and exit the wizard.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;post-installation-configurations&#34;&gt;Post-Installation Configurations&lt;/h2&gt;
+&lt;p&gt;After completing the installation of Nuix RESTful Service, the following configurations should be reviewed.&lt;/p&gt;
+&lt;h3 id=&#34;windows-service-user-account&#34;&gt;Windows Service User Account&lt;/h3&gt;
+&lt;p&gt;If Nuix RESTful Service is configured to be run as a Windows service, the default Log On account associated with the service must be changed when performing a new installation to ensure proper operation of the application.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Tip&lt;/h4&gt;
+
+    If upgrading an existing installation, all previous configurations, including the service’s Log On account, are preserved.
+
+&lt;/div&gt;
+
+&lt;p&gt;To update the Log On account associated with Nuix RESTful Service:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use the Keyboard shortcut &lt;code&gt;Win + R&lt;/code&gt; to open the Windows Run dialog box.&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;services.msc&lt;/code&gt; in the text field, then press &lt;strong&gt;OK&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the Windows Services Manager, locate the &lt;code&gt;Nuix-Rest&lt;/code&gt; service.&lt;/li&gt;
+&lt;li&gt;Right-click on the service and select &lt;strong&gt;Properties&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;Log On&lt;/strong&gt; tab.&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;This Account&lt;/strong&gt;, and provide the appropriate credentials for an account to use&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Apply&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;verifying-java-options&#34;&gt;Verifying Java Options&lt;/h3&gt;
+&lt;p&gt;If upgrading from an installation earlier than version 7.8, backed up Java Options can be added back to the installation after the upgrade using the following steps.&lt;/p&gt;
+&lt;p&gt;To add any of these options to your existing installation:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the location where Nuix RESTful Service is installed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default path&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Locate and open &lt;code&gt;Nuix-REST.vmoptions&lt;/code&gt; within a text editor.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modify the file, adding one argument per line.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Save and exit the editor.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Restart Nuix RESTful Service.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;starting-in-application-mode&#34;&gt;Starting in Application Mode&lt;/h3&gt;
+&lt;p&gt;If Nuix RESTful Service was configured to be run as a standalone application, the service must be manually started and stopped.&lt;/p&gt;
+&lt;p&gt;To start Nuix RESTful Service in Application Mode:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Open a command prompt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the location where Nuix RESTful Service is installed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default path&lt;/strong&gt;: &lt;code&gt;C:\Program Files\Nuix\Nuix RESTful Service&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Start the application using the following command:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Nuix-REST.exe /run&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stop the application using the following key combination within the command prompt:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ctrl + C&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;verifying-your-installation&#34;&gt;Verifying Your Installation&lt;/h3&gt;
+&lt;p&gt;Once your installation is complete, complete the following steps to verify your deployment:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Open a web browser and enter the following URL&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;localhost:8080/nuix-restful-service/svc/v2/about&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If the installation was successful, the response body will return with information about the RESTful service.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+ &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;server&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://localhost:8080/nuix-restful-service/svc&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rest-oem-server&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;startupTime&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;nuixRestfulVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;engineVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt; 
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;api-documentation&#34;&gt;API Documentation&lt;/h3&gt;
+&lt;p&gt;The Nuix RESTful Service provides a robust Application Programming Interface (API) that enables you to integrate your product or application with the Nuix Engine. For information about the endpoints that are available within the API, refer to the Nuix RESTful Service API documentation.&lt;/p&gt;
+&lt;p&gt;The API reference documentation is included with Nuix Restful Service and can be accessed at the following URL after installation.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://&amp;lt;localhost&amp;gt;:8080/nuix-restful-service/svc/docs
+&lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Install on Linux</title>
+      <link>/getting-started/rest/installation/linux.html</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/installation/linux.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Nuix RESTful Service provides a wizard-based installer that guides you through the installation and initial configuration of the application. Follow the steps in this section to complete your installation of Nuix RESTful Service in a Linux environment.&lt;/p&gt;
+&lt;p&gt;Depending on the configuration of your system, Nuix RESTful Service can be installed into both graphical and non-graphical environments using the same installer.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+
+    A JRE is not bundled with the Linux installers provided by Nuix RESTful Service.
+The latest version of Java 11 for your environment must be installed prior to installing Nuix RESTful Service on Linux.
+
+&lt;/div&gt;
+
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;If performing an upgrade, ensure that a backup of your existing Java Options is made prior to installation as these values will be overwritten. These values can be found in the bin/setenv.sh file within your installation directory. See &lt;a href=&#34;#verifying-java-options&#34;&gt;Verifying Java Options&lt;/a&gt; after completing your upgrade for steps on adding these configurations back to installation.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;The following prerequisites must be installed prior to using Nuix RESTful Service in a Linux environment.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GTK+ graphical user interface library&lt;/li&gt;
+&lt;li&gt;X11 Screen Saver extension library&lt;/li&gt;
+&lt;li&gt;Chromium browser (if using OCR)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Perform the following steps to install all prerequisites:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal within your Linux environment:&lt;/li&gt;
+&lt;li&gt;Based on your operating system, enter one of the following commands to install the dependences:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu&lt;/strong&gt;: &lt;code&gt;apt-get install libgtk-3-0 libxss1 xvfb&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If using the Nuix OCR Addon, install the Chromium browser using the following command:
+&lt;pre&gt;&lt;code&gt;sudo apt install --assume-yes chromium-browser
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;After installation completes, start the X-Server Virtual Framebuffer using the following command:
+&lt;pre&gt;&lt;code&gt;Xvfb :1 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    This command only needs to be performed after the initial installation or if the &lt;code&gt;xvfb&lt;/code&gt; process is ever terminated.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Perform the following steps to install Nuix RESTful Service.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the Linux installer from the &lt;a href=&#34;https://download.nuix.com/releases/rest-oem/&#34;&gt;Nuix Customer Portal&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Open a terminal and navigate to the directory that contains the installer.&lt;/li&gt;
+&lt;li&gt;Enter the following command to untar the installer:
+&lt;pre&gt;&lt;code&gt;tar xvf [path to installer]rest-OEM-linux_[version].tar
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command to assign execute privileges for the installer to the current user:
+&lt;pre&gt;&lt;code&gt;sudo chmod u+x rest-OEM-linux_[version].sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command to run the installer:
+&lt;pre&gt;&lt;code&gt;./rest-OEM-linux_[version].sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The installer may take a moment to prepare the wizard. When complete, follow the steps within the wizard to complete the installation. If installing in a non-graphical environment, the following steps will be presented within the terminal.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;From the Welcome Screen, click &lt;strong&gt;Next&lt;/strong&gt; to begin.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    &lt;p&gt;If a previous version of Nuix RESTful Service is already installed, the following options are provided:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update the existing installation&lt;/li&gt;
+&lt;li&gt;Create a new installation in a separate location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Choosing to update will bypass all further configuration steps within the wizard and begin the installation process using the configurations defined within the previous installation.&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;Read and understand the terms included in the Nuix End User License Agreement.
+&lt;ul&gt;
+&lt;li&gt;If you agree to the terms, select &lt;strong&gt;I accept the agreement&lt;/strong&gt;, and click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If installing for the first time, choose a location to install Nuix RESTful Service.
+&lt;ul&gt;
+&lt;li&gt;Click &lt;strong&gt;Next&lt;/strong&gt; to accept the default location and proceed.&lt;/li&gt;
+&lt;li&gt;Alternatively, click &lt;strong&gt;Browse&lt;/strong&gt; to choose a specific location to install the application files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Next&lt;/strong&gt; to perform the installation.&lt;/li&gt;
+&lt;li&gt;On the License Server Configuration screen, provide the following details then click Next:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Server address&lt;/strong&gt;: The URL used to access a configured Nuix Management Server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Server port&lt;/strong&gt;: The server port used to access the configured Nuix Management Server.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    To configure Nuix RESTful Service to use CLS for licensing, see Connecting to &lt;a href=&#34;&#34;&gt;Nuix Cloud License Server (CLS)&lt;/a&gt; after completing the installation.
+
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Enter credentials for an account that has access to the specified Licensing Server, then click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Review and make changes, if necessary, to the details provided on the Java &amp;amp; Folder Options screen.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Java Options&lt;/td&gt;
+&lt;td&gt;Optimize the Java settings used by Nuix RESTful Service to suit your hardware specifications. Define one argument per line. &lt;br&gt; Default settings are recommended for most configurations. For help or assistance with tuning your JVM settings, contact the Nuix Support team at &lt;a href=&#34;https://nuix.service-now.com/support&#34;&gt;https://nuix.service-now.com/support&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IP Address or Hostname&lt;/td&gt;
+&lt;td&gt;The URL that will be used to access Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Connection Timeout&lt;/td&gt;
+&lt;td&gt;Specify the amount of time that REST should wait for a response after accepting a connection. Use a value of -1 to indicate no timeout.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HTTP Port&lt;/td&gt;
+&lt;td&gt;The server port used to access Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Case Directory&lt;/td&gt;
+&lt;td&gt;Specify a location where case files are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;User Scripts Directory&lt;/td&gt;
+&lt;td&gt;Specify a location where user generated scripts are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Logs Directory&lt;/td&gt;
+&lt;td&gt;Specify a location to save logs generated by Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;13&#34;&gt;
+&lt;li&gt;After reviewing the Java &amp;amp; Folder Options screen, click &lt;strong&gt;Next&lt;/strong&gt; to continue.&lt;/li&gt;
+&lt;li&gt;Specify how Nuix RESTful Service should be run:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Service&lt;/td&gt;
+&lt;td&gt;Run Nuix RESTful Service in the background as a Windows service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Application&lt;/td&gt;
+&lt;td&gt;Run Nuix RESTful Service as a standalone application. See Starting in Application Mode after installation completes for details on starting the application.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Start Service&lt;/td&gt;
+&lt;td&gt;Select this checkbox, if the Service option was selected, to start the Nuix RESTful Service when installation completes.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;15&#34;&gt;
+&lt;li&gt;Click &lt;strong&gt;Finish&lt;/strong&gt; to complete the setup and exit the wizard.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;post-installation-configuration&#34;&gt;Post-Installation Configuration&lt;/h2&gt;
+&lt;p&gt;After completing the installation of Nuix RESTful Service, the following configurations should be considered.&lt;/p&gt;
+&lt;h3 id=&#34;verifying-java-options&#34;&gt;Verifying Java Options&lt;/h3&gt;
+&lt;p&gt;If upgrading an existing installation to version 7.8, any backed up Java Options can be added back to the upgraded installation using the following steps.&lt;/p&gt;
+&lt;p&gt;To add any of these options to your existing installation:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to the location where Nuix RESTful Service is installed.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu default path&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Locate and open &lt;code&gt;Nuix-REST.vmoptions&lt;/code&gt; within a text editor.&lt;/li&gt;
+&lt;li&gt;Modify the file, adding one argument per line.&lt;/li&gt;
+&lt;li&gt;Save and exit the editor.&lt;/li&gt;
+&lt;li&gt;Restart Nuix RESTful Service.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;starting-in-application-mode&#34;&gt;Starting in Application Mode&lt;/h3&gt;
+&lt;p&gt;If Nuix RESTful Service was configured to be run as a standalone application, the service must be manually started and stopped.&lt;/p&gt;
+&lt;p&gt;To start Nuix RESTful Service in Application Mode:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal.&lt;/li&gt;
+&lt;li&gt;Navigate to the location where Nuix RESTful Service is installed.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu default path&lt;/strong&gt;: &lt;code&gt;/opt/nuix-restful-service&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Start the application using the following command:
+&lt;pre&gt;&lt;code&gt;./nuix-rest start
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Stop the application using the following command:
+&lt;pre&gt;&lt;code&gt;./nuix-rest stop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;verifying-your-installation&#34;&gt;Verifying Your Installation&lt;/h3&gt;
+&lt;p&gt;Once your installation is complete, complete the following steps to verify your deployment:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a web browser and enter the following URL
+&lt;pre&gt;&lt;code&gt;localhost:8080/nuix-restful-service/svc/v2/about
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;If the installation was successful, the response body will return with information about the RESTful service.
+&lt;pre&gt;&lt;code class=&#34;language-{&#34; data-lang=&#34;{&#34;&gt; &amp;quot;server&amp;quot; : &amp;quot;http://localhost:8080/nuix-restful-service/svc&amp;quot;,
+ &amp;quot;serverId&amp;quot; : &amp;quot;rest-oem-server&amp;quot;,
+ &amp;quot;startupTime&amp;quot; : null,
+ &amp;quot;nuixRestfulVersion&amp;quot; : null,
+ &amp;quot;engineVersion&amp;quot; : null
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Docker</title>
+      <link>/getting-started/rest/installation/docker.html</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/installation/docker.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Follow the procedures in this section to install and deploy the Nuix RESTful Service Docker image within a Ubuntu Linux environment using Compose.&lt;/p&gt;
+
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;The Nuix RESTful Service Docker image is intended for development purposes only. Usage of this installation in a production environment is not supported.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Before proceeding, the following prerequisites must be installed within your environment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Docker Engine&lt;/strong&gt;: An open-source containerization technology.
+&lt;ul&gt;
+&lt;li&gt;Visit &lt;a href=&#34;https://docs.docker.com/install/linux/docker-ce/ubuntu/&#34;&gt;Get Docker Engine - Community for Ubuntu&lt;/a&gt; for complete instructions on installing the Docker Engine on Ubuntu.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;:To ensure proper operation, the Docker Engine requires a minimum of 8 GB of memory.
+
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Docker Compose&lt;/strong&gt;: A tool used to define and run multi-container Docker applications.
+&lt;ul&gt;
+&lt;li&gt;Visit &lt;a href=&#34;https://docs.docker.com/compose/install/&#34;&gt;Install Docker Compose&lt;/a&gt; for complete instructions on installing Docker Compose.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;:The Docker Engine must be installed and running before installing Docker Compose. View the &lt;a href=&#34;https://docs.docker.com/install/linux/linux-postinstall/&#34;&gt;Post-installation steps for Linux&lt;/a&gt; for details on configuring different startup methods for Docker.
+
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;preparing-the-target-directory&#34;&gt;Preparing the Target Directory&lt;/h2&gt;
+&lt;p&gt;Use the following procedure to download and extract the Nuix RESTful Service Linux archive.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the Docker Image for Linux 64-bit package from the &lt;a href=&#34;https://download.nuix.com/releases/rest-oem/&#34;&gt;Nuix Customer Portal&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Open a terminal and enter the following command to create a target directory for the package:
+&lt;pre&gt;&lt;code&gt;sudo mkdir -p /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: &lt;code&gt;/opt/nuix/rest&lt;/code&gt; is the recommended location for this package.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;Extract the contents of the rest-docker-compose archive to the target directory:
+&lt;pre&gt;&lt;code&gt;sudo tar xzf rest-docker-compose-VERSION.tar.gz -C /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Navigate to the target directory to view the extracted contents of the package:
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;code&gt;rest&lt;/code&gt; directory contains the directory structure described in the following table:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    .
+    |-- bin                                       # Binaries and support scripts
+        |-- clean.sh                              # Script to remove user data and restore directories
+        |-- configure.sh                          # Script to configure the Nuix License Server settings
+        |-- create-service.sh                     # Script to create a service
+        |-- install.sh                            # Script to install the Nuix RESTful Service
+    |-- cases                                     # Default Inventory Location for cases on the host
+    |-- docs                                      # Documentation
+    |-- exports                                   # Default Nuix exports directory on the host
+    |-- images                                    # Distributed Docker images
+    |-- logs                                      # Default Nuix logs directory on the host
+    |-- raw-data                                  # Default Nuix raw-data directory on the host
+    |-- scripts                                   # Default Nuix scripts directory on the host
+    |-- secrets                                   # Sensitive properties used by the Nuix Rest SDK
+        |-- nuix-rest-secret.properties           # Sensitive Nuix License Server properties
+    |-- tmp                                       # Default Nuix tmp directory on the host
+    |-- user-data-extra                           # Default Nuix user-data-extra folder on the host
+    |-- .env                                      # Docker compose environment configuration.
+    |-- rest.env                                  # Nuix RESTful Service environment configuration
+    |-- docker-compose.yml                        # Docker compose file
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;installing-the-docker-image&#34;&gt;Installing the Docker Image&lt;/h2&gt;
+&lt;p&gt;After extracting the package to the target directory, use the following procedure to complete the installation process using the provided scripts.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal and navigate to the target directory.
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command to begin the installation.
+&lt;pre&gt;&lt;code&gt;sudo ./bin/install.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The &lt;code&gt;install.sh&lt;/code&gt; script verifies that all prerequisites are in place before loading the included Nuix RESTful service Docker images and calling all other scripts that are required for the installation.
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: The first time install.sh is run, a warning is returned indicating that rest.env is missing and will be created from an example file that contains default values. This is expected and can be ignored. See &lt;a href=&#34;#post-installation-configuration&#34;&gt;Post-Installation Configuration&lt;/a&gt; after completing the installation for information on modifying the default environment configurations.
+
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;When prompted, specify the Nuix License Server that will be used for licensing.
+&lt;ol&gt;
+&lt;li&gt;Enter a URL where the license server can be accessed.&lt;/li&gt;
+&lt;li&gt;Provide user credentials for an account associated within the specified license server.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After installation completes, proceed to the remaining sections in this guide for information on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#configuring-environment-settings&#34;&gt;Configuring environment settings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#updating-nuix-license-server-settings&#34;&gt;Updating Nuix License Server settings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#removing-existing-data&#34;&gt;Removing user data form an existing installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#running-nuix-restful-service&#34;&gt;Starting Nuix RESTful Service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#verifying-the-installation&#34;&gt;Verifying your installation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;post-installation-configuration&#34;&gt;Post-Installation Configuration&lt;/h2&gt;
+&lt;p&gt;After completing the installation of Nuix RESTful Service, the following configurations can be made to the installation.&lt;/p&gt;
+&lt;h3 id=&#34;configuring-environment-settings&#34;&gt;Configuring Environment Settings&lt;/h3&gt;
+&lt;p&gt;Nuix RESTful Service includes several configurations that can be modified to change the how the application operates.&lt;/p&gt;
+&lt;p&gt;Use the following procedure to access the available environment configurations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal and navigate to the target directory.
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Using the editor of your choice, open the following configuration file.
+&lt;pre&gt;&lt;code&gt;rest.env
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Review the properties included within the file and make changes as necessary.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The following table provides details about the properties that are configurable.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;JAVA_OPTS_HEAP&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Optimize the Java heap size ranges used by Nuix RESTful service. &lt;br&gt; * &lt;strong&gt;-Xms512m&lt;/strong&gt; Default minimum memory allocation &lt;br&gt; * &lt;strong&gt;-Xmx6g&lt;/strong&gt; Default maximum memory allocation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;publicURL&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The URL used to access Nuix RESTful Service.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logging_level&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the logging level to be used with REST.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logging_level_com_nuix_us&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the logging level to be used for workers.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;casePrivilegeSecurityEnabled&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Enable or disable the ability to restrict cases from view using case security.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;threadpool_nativesearch&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The number of threads available for retrieving item metadata when searches are performed.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;threadpool_asyncfunction&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The number of threads available to perform background tasks such as tagging, exclusions, or highlighting.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;threadpool_searchUnsortedManager&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The number of threads available for retrieving item counts for the provided analytics.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;threadpool_searchUnsorted&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The number of threads available to run queries and aggregate the data required to populate the provided analytics.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;serverId&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;A unique identifiable name for the REST instance.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;xpack_security_transport_ssl_enabled&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Enable or disable TLS/SSL.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ignoreDerbyCases&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Restrict REST from processing Derby-based cases.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;nuix_engine_userDataDirs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the locations where artifacts used by the Nuix Engine are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;inventoryLocations&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the location where cases are stored.&lt;br&gt; Mapped network drives can be configured within Linux environments if a symbolic link has been created between the mapped and local drive.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sandboxDirectory&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify a location where unprocessed evidence is stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;server_contextPath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify a context path prefix to use within the Nuix RESTful Service URL.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;workerAgentStatusHistoryUpdateIntervalMs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the frequency (in milliseconds) in which worker agent status is retrieved.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;workerAgentStatusHistoryMaxValues&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the maximum number of times that worker agent status can be retrieved.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;registerAsApplication&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify how Nuix RESTful Service should be run.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;maxSimultaneousWorkers&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the total number of workers that can be distributed by this REST instance at any given time.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;workerAgentTempPath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the path to a directory, such as /tmp, that can be used by worker agents for temporary storage. The specified location should be on performant local storage with ample space for best results.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;nuix_logdir&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the directory where logs generated by Nuix RESTful Service are stored.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;nuix_engine_path&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the directory where the Nuix Engine is installed.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logging_file&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the path and file name to use for the log file.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;logging_config&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Specify the path and file name of the logging configuration file.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;When finished, save and exit the file, then restart Nuix RESTful Service for the changes to take effect.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;updating-nuix-license-server-settings&#34;&gt;Updating Nuix License Server Settings&lt;/h3&gt;
+&lt;p&gt;If required, the configured Nuix License Server can be updated after the initial installation using a provided script.&lt;/p&gt;
+&lt;p&gt;Use the following procedure to update the Nuix License Server connection details:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal and navigate to the target directory.
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command to run the script and update the connection details.
+&lt;pre&gt;&lt;code&gt;sudo ./bin/configure.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;When prompted, specify the Nuix License Server to be used for licensing.
+&lt;ol&gt;
+&lt;li&gt;Enter a URL where the license server can be accessed.&lt;/li&gt;
+&lt;li&gt;Provide user credentials for an account associated within the specified license server.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The updated settings are saved to the &lt;code&gt;./secrets/nuix-rest-secret.properties&lt;/code&gt; file as well as the &lt;code&gt;./rest.env&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Once complete, restart Nuix RESTful Service for the changes to take effect.&lt;/p&gt;
+&lt;h3 id=&#34;removing-existing-data&#34;&gt;Removing Existing Data&lt;/h3&gt;
+&lt;p&gt;Nuix RESTful Service provides a script that allows all case, evidence, and user data to be removed without impacting the installation. This script can be used to return the Docker image back to a default state when testing different scenarios.&lt;/p&gt;
+&lt;p&gt;To remove existing data from the installation:
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Warning&lt;/h4&gt;
+
+    All existing cases, engine artifacts, and raw evidence will be deleted.
+
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open a terminal and navigate to the target directory.
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command to run the script.
+&lt;pre&gt;&lt;code&gt;sudo ./bin/clean.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;running-nuix-restful-service&#34;&gt;Running Nuix RESTful Service&lt;/h2&gt;
+&lt;p&gt;Once the Docker image has been properly deployed and configured on your system, Docker Compose can be used to quickly start Nuix RESTful Service.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To start the service in the foreground&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to the target directory where Nuix RESTful Service is installed:
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Start the service using the following command:
+&lt;pre&gt;&lt;code&gt;sudo docker-compose up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;:This startup method returns all logs within the terminal which may be helpful when troubleshooting an issue. While the service is running, the terminal cannot be used.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;To stop the service, press &lt;code&gt;Ctrl-C&lt;/code&gt; within the terminal.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;To start the service in the background&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Navigate to the target directory where Nuix RESTful Service is installed:
+&lt;pre&gt;&lt;code&gt;cd /opt/nuix/rest
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Start the service using the following command:
+&lt;pre&gt;&lt;code&gt;sudo docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: This startup method does not return logs but allows continued use of the terminal.
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;To stop the service, enter the following command:
+&lt;pre&gt;&lt;code&gt;sudo docker-compose stop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;starting-as-a-service&#34;&gt;Starting as a Service&lt;/h3&gt;
+&lt;p&gt;The installation script provided with Nuix RESTful Service creates all required Docker entries to allow the image to be run as a service. By default, the services are not started or configured to start on boot, however, these configurations can be changed using the following commands.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start as a service:
+&lt;pre&gt;&lt;code&gt;sudo systemctl start docker-compose@nuix-rest-sdk
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Stop the service from running:
+&lt;pre&gt;&lt;code&gt;sudo systemctl stop docker-compose@nuix-rest-sdk
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Configure Nuix RESTful Service to run at startup:
+&lt;pre&gt;&lt;code&gt;sudo systemctl enable docker-compose@nuix-rest-sdk
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;verifying-the-installation&#34;&gt;Verifying the Installation&lt;/h3&gt;
+&lt;p&gt;Once your installation is complete, verify your deployment using one of the following methods.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;From a web browser, access the following URL:
+&lt;pre&gt;&lt;code&gt;localhost:8080/nuix-restful-service/svc/v2/about
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;From the terminal, enter the following cURL:
+&lt;pre&gt;&lt;code&gt;curl http://localhost:8080/nuix-restful-service/svc/v2/about
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the installation was successful, the response body for either method will return with information about the RESTful service.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+ &amp;quot;server&amp;quot; : &amp;quot;http://localhost:8080/nuix-restful-service/svc&amp;quot;,
+ &amp;quot;serverId&amp;quot; : &amp;quot;rest-oem-server&amp;quot;,
+ &amp;quot;startupTime&amp;quot; : null,
+ &amp;quot;nuixRestfulVersion&amp;quot; : null,
+ &amp;quot;engineVersion&amp;quot; : null
+}
+&lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+  </channel>
+</rss>

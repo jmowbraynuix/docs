@@ -1,0 +1,662 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Quick Start Guides</title>
+    <link>/getting-started/rest/quick_start.html</link>
+    <description>Recent content in Quick Start Guides on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/getting-started/rest/quick_start/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Getting Started: Set Up your Development Environment</title>
+      <link>/getting-started/rest/quick_start/environmentsetup.html</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start/environmentsetup.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Before proceeding with the steps outlined below, ensure that the following prerequisites have been completed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nuix RESTful Service is installed and running.&lt;/li&gt;
+&lt;li&gt;Access to Nuix Licensing using any of the following options:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#updating-nms-connections&#34;&gt;Nuix Management Server (NMS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#connecting-to-nuix-cloud-license-server-cls&#34;&gt;Nuix Cloud License Server (CLS)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You will also need to know the following details about your installation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The server location of your REST installation.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Default location&lt;/strong&gt;: &lt;code&gt;&amp;lt;localhost&amp;gt;:8080/nuix-restful-service/svc/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This URL is used throughout the provided examples to make calls to the API.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The location of the API reference documentation.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Default location&lt;/strong&gt;: &lt;code&gt;&amp;lt;localhost&amp;gt;:8080/nuix-restful-service/svc/docs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nuix RESTful Service is a language agnostic tool capable of interpreting calls over HTTP(s) using the method of your choice. To explore the API, any tool capable of performing HTTP requests can be used.&lt;/p&gt;
+&lt;h2 id=&#34;postman&#34;&gt;Postman&lt;/h2&gt;
+&lt;p&gt;For the purposes of these quick start topics, simple cURL commands are provided that can be run within &lt;a href=&#34;https://www.postman.com/&#34;&gt;Postman&lt;/a&gt;.
+To use Postman, visit the following URL and download the API client for the operating system you are using.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.postman.com/downloads/&#34;&gt;https://www.postman.com/downloads/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once downloaded, run the installer to provision Postman on your computer. Details about the installation process can be located on the Postman website.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://learning.postman.com/docs/getting-started/installation-and-updates/&#34;&gt;https://learning.postman.com/docs/getting-started/installation-and-updates/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After the installation finishes, launch the application by clicking the Postman icon on your desktop.&lt;/p&gt;
+&lt;h3 id=&#34;import-the-openapi-specification&#34;&gt;Import the OpenAPI Specification&lt;/h3&gt;
+&lt;p&gt;To get up and running quickly, the Nuix RESTful Service OpenAPI specification can be imported directly into Postman. When importing the API specification, a template request for each available endpoint in the API is loaded into a new collection within Postman, eliminating the need to manually enter each endpoint.&lt;/p&gt;
+&lt;p&gt;Use the following procedure to import the Nuix REST API specification into Postman:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Navigate to the Nuix RESTful Service reference documentation to download the OpenAPI 3 specification.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default docs location&lt;/strong&gt;: &lt;code&gt;&amp;lt;localhost&amp;gt;:8080/nuix-restful-service/svc/docs&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Locate and right-click the URL at the top of the page, then select &lt;strong&gt;Copy link address&lt;/strong&gt; to copy the location of the &lt;code&gt;openapi-docs.json&lt;/code&gt; specification file.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../images/downloadApiSpec.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Within Postman, find and click the &lt;strong&gt;Import&lt;/strong&gt; button located in the top menu bar.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From the Import window, select the &lt;strong&gt;Link&lt;/strong&gt; tab.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paste in the URL that was previously copied and click &lt;strong&gt;Continue&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confirm the details of the import and make the following additional selections:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Under the &lt;em&gt;Link this collection as&lt;/em&gt; menu, select &lt;strong&gt;Integration Test&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Show advanced settings&lt;/strong&gt; and confirm the following selections:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Advanced Option&lt;/th&gt;
+&lt;th&gt;Recommended Setting&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Naming requests&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Fallback&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Request parameter generation&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Schema&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Response parameter generation&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Schema&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Folder organization&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Tags&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;Click &lt;strong&gt;Import&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;When the import is complete, a new collection named &lt;strong&gt;Nuix REST-API Reference&lt;/strong&gt; will be available from the Collections tab. The available endpoints are organized according to how they are listed in the API reference documentation.&lt;/p&gt;
+&lt;h2 id=&#34;advanced-postman-setup&#34;&gt;Advanced Postman Setup&lt;/h2&gt;
+&lt;p&gt;Postman provides an interface that allows you to create and test calls to an API. Postman also allows you to configure variables for commonly used parameters that can be used to streamline your workflow when constructing API calls.&lt;/p&gt;
+&lt;p&gt;Use the following procedure to setup a few basic configurations in your Postman installation:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;With Postman open, select an existing collection or click on &lt;strong&gt;New Collection&lt;/strong&gt; to create a location to save any API calls that your create for the Nuix RESTful Service.
+&lt;ul&gt;
+&lt;li&gt;Provide a name for the new collection and optionally a description.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;Variables&lt;/strong&gt; tab and define the following variables based on your installation:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Variable&lt;/th&gt;
+&lt;th&gt;Current Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;base-url&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The URL of your Nuix RESTful Service installation. &lt;br&gt; &lt;strong&gt;Default URL&lt;/strong&gt;: http://127.0.0.1:8080/nuix-restful-service/svc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;nuix-auth-token&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The authorization token that was issued to you when a license is acquired. &lt;br&gt; &lt;strong&gt;Note&lt;/strong&gt;: Since a license has not yet been acquired, leave this field empty.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    The variable values identified in the table map to parameters used in the Nuix RESTful Service API.
+
+&lt;/div&gt;
+
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Click &lt;strong&gt;Create&lt;/strong&gt; to finalize the new collection.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;../../../images/postmanCollectionConfig.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The newly created collection will be displayed in the left sidebar of Postman under the Collections tab. As you create and test calls to the REST API, you can save them to your newly created collection and access them from this location within Postman.&lt;/p&gt;
+&lt;p&gt;To create a new request, click the &lt;strong&gt;+&lt;/strong&gt; button located at the top of the builder window.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../images/postmanNewRequest.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To save a request to your Postman collection, use the following procedure:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Expand the Save button drop-down menu next to the URL input field and select &lt;strong&gt;Save As&lt;/strong&gt; from the menu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Provide a &lt;strong&gt;Request name&lt;/strong&gt;, such as Server Status, for the call.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select the Collection to save the request in, then click &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../images/postmanSaveRequest.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Checking Server Status</title>
+      <link>/getting-started/rest/quick_start/checkingserverstatus.html</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start/checkingserverstatus.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;Before making any calls to the Nuix RESTful Service API, it is best practice to first ensure that the service is running and available.&lt;/p&gt;
+&lt;p&gt;The Nuix RESTful Service server status can be checked using the following &lt;strong&gt;GET&lt;/strong&gt; request to the &lt;code&gt;/about&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -X GET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://127.0.0.1:8080/nuix-restful-service/svc/about&amp;#34;&lt;/span&gt; -H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;accept: application/vnd.nuix.v2+json&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the service is available, a response similar to the following example will be returned.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+ &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;server&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://localhost:8080/nuix-restful-service/svc&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rest-oem-server&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;startupTime&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;nuixRestfulVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+ &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;engineVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: In this example, some of the response values have returned &lt;code&gt;null&lt;/code&gt; values. These values are intentionally not returned because the request was submitted without an authentication token.
+
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Manage Licenses with REST</title>
+      <link>/getting-started/rest/quick_start/licensemanagement.html</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start/licensemanagement.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;An authentication token is required to access most endpoints within the Nuix RESTful Service API. To get an authentication token, a request must be submitted to the API to retrieve a license from your configured NMS instance. If the requested license is available on the licensing server, an authentication token will be issued in the request response. This token can then be used during your session to make authenticated calls to the API.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: Based on the configuration of your installation of Nuix RESTful Service, your authentication token may expire if your session becomes inactive after a period of time. If this occurs, a new token must be retrieved using the steps within this topic.
+
+&lt;/div&gt;
+
+&lt;p&gt;Within this topic, you&amp;rsquo;ll learn how to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Identify which Nuix license types are available for use.&lt;/li&gt;
+&lt;li&gt;Request an authentication token.&lt;/li&gt;
+&lt;li&gt;Release your license to end your session.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;license-availability&#34;&gt;License Availability&lt;/h2&gt;
+&lt;p&gt;Nuix offers several different license types that provide various functionality for different use cases. When submitting a request to retrieve an authentication token, you may want to know what license types are available to you.&lt;/p&gt;
+&lt;p&gt;Check which Nuix license types are available on your configured NMS instance using the following &lt;strong&gt;GET&lt;/strong&gt; request to the &lt;code&gt;/licenses&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -X GET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://127.0.0.1:8080/nuix-restful-service/svc/licenses&amp;#34;&lt;/span&gt; -H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;accept: application/vnd.nuix.v1+json&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the license server is accessible, a response similar to the following shortened example will be returned. The response includes details about each license type that exists on the configured licensing server.&lt;/p&gt;
+&lt;p&gt;Identify the license type that meets the needs of your job, then locate its associated short name. The short name is used during license acquisition to request a specific license type.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;shortname&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;enterprise-workstation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;count&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;configuredCount&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Nuix eDiscovery Workstation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workers&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;6&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;configuredWorkers&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;audited&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;auditThreshold&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;source&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;expiry&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;legalHoldHoldCountLimit&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;concurrentUserLimit&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;canChooseWorkers&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;null&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;license-acquisition&#34;&gt;License Acquisition&lt;/h2&gt;
+&lt;p&gt;A license is required in order to gain full access to the Nuix REST API. When you request a license, you are issued an authentication token that can then be used in all subsequent requests to the API.&lt;/p&gt;
+&lt;p&gt;Submit a request to retrieve a license and authentication token from your licensing server using the following &lt;strong&gt;PUT&lt;/strong&gt; request to the &lt;code&gt;/authenticatedUsers/login&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X PUT &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/authenticatedUsers/login&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Content-Type: application/json&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--data-raw &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;username&amp;#34;: &amp;#34;user1&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;password&amp;#34;: &amp;#34;password&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;licenseShortName&amp;#34;: &amp;#34;enterprise-workstation&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;workers&amp;#34;: 2
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the above example, four parameters are submitted in the body of the request as JSON.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;username&lt;/code&gt;: The username for an account that has access to the licensing server.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;password&lt;/code&gt;: The password associated with the username.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;licenseShortName&lt;/code&gt;: (&lt;strong&gt;Optional&lt;/strong&gt;) The short name of the license to be retrieved.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;workers&lt;/code&gt;: (&lt;strong&gt;Optional&lt;/strong&gt;) The number of workers to request with the license.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both &lt;code&gt;licenseShortName&lt;/code&gt; and &lt;code&gt;workers&lt;/code&gt; are optional parameters. If left undefined, Nuix will retrieve and assign the first license returned in the response to the &lt;code&gt;/licenses&lt;/code&gt; endpoint. Additionally, if the selected license type supports the use of workers, a default value of one or two workers, assigned by the Nuix Engine, will also be assigned.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+
+
+    &lt;strong&gt;Note&lt;/strong&gt;: Workers are a consumable entity within your environment like licenses. If no workers are available at the time that a license is requested, no workers will be assigned. Similarly, if many workers are requested, but only a few are available, a subset of the total requested workers equal to the number of available workers will be assigned.
+
+&lt;/div&gt;
+
+&lt;p&gt;The following response to the previous license acquisition request displays the issued authentication token, retrieved license type, and the number of workers that have been assigned to the license.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;user1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;authToken&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;licenseShortName&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;enterprise-workstation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workersGranted&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After obtaining the authentication token, provide it within the header of all subsequent calls to make authenticated requests to the API.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;When &lt;a href=&#34;checkingserverstatus.html&#34;&gt;checking the server status&lt;/a&gt; by calling the &lt;code&gt;/about&lt;/code&gt; endpoint, if the request is made using the authentication token, the response will include details about the REST server instead of null values.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X GET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/about&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;server&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://127.0.0.1:8080/nuix-restful-service/svc&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rest-oem-server&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;startupTime&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1602193993435&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;nuixRestfulVersion&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;8.8.0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;engineVersion&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;8.8.0.37&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;license-revocation&#34;&gt;License Revocation&lt;/h2&gt;
+&lt;p&gt;When you are finished making calls to the Nuix RESTful Service API, it is best practice to end your session. Performing this action revokes your authentication key and returns your license and any assigned workers back to the licensing server for other users to consume.&lt;/p&gt;
+&lt;p&gt;Submit a &lt;strong&gt;DELETE&lt;/strong&gt; call to the &lt;code&gt;/authenticatedUsers/{username)endpoint&lt;/code&gt;, specifying the username used to log in and your authentication token in the header of the request to revoke your license and authentication token.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X DELETE &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/authenticatedUsers/user1&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At the time of performing this request, if your session is active with running or queued functions, you will be asynchronously logged out. This default behavior allows the session to remain active until the functions have completed. At that time, the session will end, and your license will be returned.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Manage Cases within your Inventory</title>
+      <link>/getting-started/rest/quick_start/inventorymanagement.html</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start/inventorymanagement.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;All data that is ingested and processed using the Nuix Engine is done so within a Nuix case. The case acts as a container for the collections of data and evidence related to an investigation. Nuix supports two types of cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simple&lt;/strong&gt;: A single case that contains all data for an investigation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compound&lt;/strong&gt;: A collection of two or more related simple cases that can be accessed concurrently as a single large case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After choosing the type of case best suited for your purpose, you can ingest evidence and begin any required post processing activities.
+All cases that are created are saved within your case inventory, which was defined during the installation of Nuix RESTful Service.&lt;/p&gt;
+&lt;p&gt;Within this topic, you&amp;rsquo;ll learn how to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new case.&lt;/li&gt;
+&lt;li&gt;View existing cases.&lt;/li&gt;
+&lt;li&gt;Close a case.&lt;/li&gt;
+&lt;li&gt;Delete a case.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;creating-a-case&#34;&gt;Creating a Case&lt;/h2&gt;
+&lt;p&gt;New cases can be created by submitting a &lt;strong&gt;POST&lt;/strong&gt; request to the &lt;code&gt;/cases&lt;/code&gt; endpoint. Use the following request to create a simple case. For information on creating other case types, such as compound or elastic-based cases, refer to the Nuix RESTful Service API reference documentation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X POST &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/cases&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Content-Type: application/json&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--data-raw &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;compound&amp;#34;: false,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;location&amp;#34;: &amp;#34;inventory0&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;name&amp;#34;: &amp;#34;MyNuixCase&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;description&amp;#34;: &amp;#34;A simple case created using the REST API&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;investigator&amp;#34;: &amp;#34;Your Name&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the example above, five parameters are submitted in the body of the request as JSON as well as an &lt;a href=&#34;licensemanagement.html#license-acquisition&#34;&gt;authentication token&lt;/a&gt; in the header of the request.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;compound&lt;/code&gt;: The type of case to create. A value of &lt;code&gt;false&lt;/code&gt; will create a simple case.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location&lt;/code&gt;: A relative or absolute path that is within the defined inventory location used by REST where the case will be saved. A value of &lt;code&gt;inventory0&lt;/code&gt; references the first defined inventory location within your installation of REST.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: A unique name to identify the case. This value also defines the name of the directory which contains the case on the file system.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: (&lt;strong&gt;Optional&lt;/strong&gt;) A brief description to indicate the contents or purpose of the case.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Investigator&lt;/code&gt;: The name of the person creating the case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After submitting the request, details about the newly created case are included in the response, including the &lt;code&gt;caseId&lt;/code&gt; of the case. The &lt;code&gt;caseId&lt;/code&gt; value is a required parameter in all requests involving a case.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;0eedda2d297046ae8e67fbda9f192df9&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\Program Files\\Nuix\\Nuix RESTful Service\\cases\\MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;A simple case created using the REST API&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;investigator&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Your Name&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;creationDate&amp;#34;&lt;/span&gt;: 1602818339843,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;compound&amp;#34;&lt;/span&gt;: false,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;elastic&amp;#34;&lt;/span&gt;: false,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;binaryStoreLocation&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;indexId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseSize&amp;#34;&lt;/span&gt;: 0,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;casePathParent&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\Program Files\\Nuix\\Nuix RESTful Service\\cases&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseInvestigationTimeZone&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;America/New_York&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hasExclusions&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hasNuixSystemTags&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hasProductionSets&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hasCalculatedAuditSize&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;casePath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\Program Files\\Nuix\\Nuix RESTful Service\\cases\\MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseCreationDate&amp;#34;&lt;/span&gt;: 1602818339843,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseDescription&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;A simple case created using the REST API&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseInvestigator&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Your Name&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;identifying-existing-cases&#34;&gt;Identifying Existing Cases&lt;/h2&gt;
+&lt;p&gt;If cases have already been created within your inventory, they can be identified by submitting a &lt;strong&gt;GET&lt;/strong&gt; request to the &lt;code&gt;/inventory/digest&lt;/code&gt; endpoint with your authentication token. Doing so will return information on all cases that exist within your configured inventory locations.&lt;/p&gt;
+&lt;p&gt;This request can be helpful if you need to lookup details about a case, such as its &lt;code&gt;caseId&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X GET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/v1/inventory/digest&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;
+    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;0eedda2d297046ae8e67fbda9f192df9&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;MyNuixCase&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\ProgramData\\Nuix\\NuixCases\\MyNuixCase&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;A case created using the REST API&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;investigator&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Your Name&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;creationDate&amp;#34;&lt;/span&gt;: 1609909619982,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;compound&amp;#34;&lt;/span&gt;: false,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;elastic&amp;#34;&lt;/span&gt;: false,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;binaryStoreLocation&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;indexId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;productName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Nuix&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;8.7.1&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;isOpen&amp;#34;&lt;/span&gt;: true,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;childCases&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[]&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://10.101.100.66:8080&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;serverId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;fdfc0544-4421-40df-bbd6-a200371b200d&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;closing-a-case&#34;&gt;Closing a Case&lt;/h2&gt;
+&lt;p&gt;Any time a new case is created, or an existing case is used in a request, the case is considered open. When cases are opened, they become locked to prevent other users from accessing the case at the same time.&lt;/p&gt;
+&lt;p&gt;The status of a case can be determined by calling the &lt;code&gt;/inventory/digest&lt;/code&gt; endpoint or the &lt;code&gt;/inventory/{caseId}&lt;/code&gt; endpoint, if the &lt;code&gt;caseId&lt;/code&gt; is known, to retrieve details about the case.&lt;/p&gt;
+&lt;p&gt;The response body to these requests includes the following parameter.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;isOpen&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A value of &lt;code&gt;true&lt;/code&gt; indicates that the case is open.&lt;/p&gt;
+&lt;p&gt;When you are finished working with a case, it should be closed so that it becomes unlocked and available to other users.&lt;/p&gt;
+&lt;p&gt;To close a case, submit a &lt;strong&gt;POST&lt;/strong&gt; request to the &lt;code&gt;/cases/{caseId}/close&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X POST &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/cases/0eedda2d297046ae8e67fbda9f192df9/close&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;deleting-a-case&#34;&gt;Deleting a Case&lt;/h2&gt;
+&lt;p&gt;To delete a case from your inventory, submit a &lt;strong&gt;DELETE&lt;/strong&gt; request to the &lt;code&gt;/cases/{caseId}&lt;/code&gt; endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X DELETE &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/cases/0eedda2d297046ae8e67fbda9f192df9&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: fabbd5b7-8e4d-4af8-a970-feed76a34f46&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;0eedda2d297046ae8e67fbda9f192df9&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;: true,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;childCases&amp;#34;&lt;/span&gt;: null
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Getting Started: Process Data into a Nuix Case</title>
+      <link>/getting-started/rest/quick_start/processingdata.html</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start/processingdata.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;After acquiring a license and creating a case, you can then begin ingesting data into the case using the Nuix Engine. Nuix RESTful Service provides a number of endpoints that can be used to ingest data from different data sources. These endpoints are described within the Processing category of the Nuix RESTful Service API reference documentation.&lt;/p&gt;
+&lt;p&gt;Within this topic, you&amp;rsquo;ll learn how to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Perform a simple ingestion.&lt;/li&gt;
+&lt;li&gt;Checking the status of the request.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;ingesting-data-into-a-case&#34;&gt;Ingesting Data into a Case&lt;/h2&gt;
+&lt;p&gt;When processing data into a Nuix case, there are many configurable parameters that can be used to tailor what data is retrieved, how it is processed, where it is stored, and what resources should be used to perform the work. The settings used are often determined by the type of investigation being performed and the level of detail that is required.&lt;/p&gt;
+&lt;p&gt;Details about these parameters can be found within the reference documentation for the endpoint.&lt;/p&gt;
+&lt;p&gt;For the purposes of this example, a simple ingestion can be performed by submitting a &lt;strong&gt;POST&lt;/strong&gt; request to the &lt;code&gt;/cases/{caseId}/evidence/file&lt;/code&gt; endpoint. This request ingests the contents of a single file or directory into an evidence container within the case using basic processing settings.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cURL&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -L -X POST &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;http://127.0.0.1:8080/nuix-restful-service/svc/v1/cases/0eedda2d297046ae8e67fbda9f192df9/evidence/file&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;nuix-auth-token: 49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;-H &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Content-Type: application/json&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--data-raw &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;container&amp;#34;: {
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;custodian&amp;#34;: &amp;#34;John Doe&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;name&amp;#34;: &amp;#34;Evidence Container 1&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  },
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;target&amp;#34;: {
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;path&amp;#34;: &amp;#34;C:/LocationOfData&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  },
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  &amp;#34;processorSettings&amp;#34;: {
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;analysisLanguage&amp;#34; : &amp;#34;en&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;processText&amp;#34; : true,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;reportProcessingStatus&amp;#34;: &amp;#34;physical_files&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    &amp;#34;traversalScope&amp;#34; : &amp;#34;full_traversal&amp;#34;  
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  }
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the example above, the following parameters are submitted in the body of the request as raw data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;custodian&lt;/code&gt;: The name of the person who owns the data being ingested.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: The name of the evidence container where the custodian&amp;rsquo;s data is being ingested.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;path&lt;/code&gt;: The absolute path to the file or directory being ingested.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;analysisLanguage&lt;/code&gt;: The language to use for text analysis when indexing the data.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;processText&lt;/code&gt;: Store and index the text of data items.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;reportProcessingStatus&lt;/code&gt;: Calculates the physical file size of the evidence before ingestion. This data can then be used to report the progress of the ingestion.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;traversalScope&lt;/code&gt;: Indicates what files should be processed. The &lt;code&gt;full_traversal&lt;/code&gt; value ensures that all loose files and forensic images are processed, including their contents.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Any number and combination of parameters can be submitted in the request. If you find that you use consistent processor settings when performing ingestions, an external processing profile can also be used to supply the settings rather than defining them individually within the body of the request.&lt;/p&gt;
+&lt;p&gt;To use a processing profile, specify the name of the profile using the &lt;code&gt;processingProfile&lt;/code&gt; parameter. The profile must exist within the &lt;code&gt;..\nuix-engine\user-data\Processing Profiles&lt;/code&gt; directory of your REST installation.&lt;/p&gt;
+&lt;p&gt;See the reference documentation for the endpoint to learn more about available parameters.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;functionKey&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;72744ec6-6de1-488c-bbec-ff27b64974e3&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://127.0.0.1:8080/nuix-restful-service/svc/v1/asyncFunctions/72744ec6-6de1-488c-bbec-ff27b64974e3&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;checking-the-status-of-a-function&#34;&gt;Checking the Status of a Function&lt;/h2&gt;
+&lt;p&gt;After submitting the request to perform an ingestion, a response is returned which includes a &lt;code&gt;functionKey&lt;/code&gt; and &lt;code&gt;location&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The function key is a unique identifier for the request that can be used to query its status. The &lt;code&gt;location&lt;/code&gt; URL provides a request to the &lt;code&gt;/asyncFunctions/{key}&lt;/code&gt; endpoint, which when called, returns the status and other information about the associated function.&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-primary&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;Note&lt;/h4&gt;
+
+    The results of asynchronous functions, such as ingestion, are only maintained for five minutes after the completion of the function.
+
+&lt;/div&gt;
+
+&lt;p&gt;The following response is returned after calling the &lt;code&gt;location&lt;/code&gt; URL from the previous ingestion request. This response can also be returned by submitting a &lt;strong&gt;GET&lt;/strong&gt; request to the &lt;code&gt;/asyncFunctions/{key}&lt;/code&gt; endpoint using the function key from the ingestion request shown earlier in the topic.&lt;/p&gt;
+&lt;p&gt;This response includes granular details about the ingestion request, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Status of the function&lt;/li&gt;
+&lt;li&gt;Details about the request&lt;/li&gt;
+&lt;li&gt;Processing settings used&lt;/li&gt;
+&lt;li&gt;High level details about the ingested data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;done&amp;#34;&lt;/span&gt;: true,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;cancelled&amp;#34;&lt;/span&gt;: false,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;result&amp;#34;&lt;/span&gt;: true,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;token&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;49e225d7-b88d-4d1b-9cbc-296e83706a60&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;functionKey&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;72744ec6-6de1-488c-bbec-ff27b64974e3&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;progress&amp;#34;&lt;/span&gt;: 135591,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;total&amp;#34;&lt;/span&gt;: 135591,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;percentComplete&amp;#34;&lt;/span&gt;: 100.0000,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;updatedOn&amp;#34;&lt;/span&gt;: 1610047993132,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;statusId&amp;#34;&lt;/span&gt;: null,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;requestTime&amp;#34;&lt;/span&gt;: 1610047968056,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;startTime&amp;#34;&lt;/span&gt;: 1610047968056,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;finishTime&amp;#34;&lt;/span&gt;: 1610047996497,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseId&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;8ca047e086aa4497bc311ef5cb4bada7&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hasSuccessfullyCompleted&amp;#34;&lt;/span&gt;: true,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;friendlyName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Evidence Ingestion Function&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;caseLocation&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\ProgramData\\Nuix\\NuixCases\\MyNuixCase&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;requestor&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;user1&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;action&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;AsyncBulkIngestionFunction&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;options&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;reloadQuery&amp;#34;&lt;/span&gt;: null,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processorSettings&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processText&amp;#34;&lt;/span&gt;: true,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processLooseFileContents&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processForensicImages&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;analysisLanguage&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;stopWords&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;stemming&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;enableExactQueries&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractNamedEntities&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractNamedEntitiesFromText&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractNamedEntitiesFromProperties&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractNamedEntitiesFromTextStripped&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractShingles&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processTextSummaries&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;calculateSSDeepFuzzyHash&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;detectFaces&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractFromSlackSpace&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;carveFileSystemUnallocatedSpace&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;carveUnidentifiedData&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;carvingBlockSize&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;recoverDeletedFiles&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;extractEndOfFileSlackSpace&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;smartProcessRegistry&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;identifyPhysicalFiles&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;createThumbnails&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;skinToneAnalysis&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;calculateAuditedSize&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storeBinary&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;maxStoredBinarySize&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;maxDigestSize&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;digests&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[]&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;addBccToEmailDigests&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;addCommunicationDateToEmailDigests&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;reuseEvidenceStores&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processFamilyFields&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hideEmbeddedImmaterialData&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;reportProcessingStatus&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerItemCallback&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerItemCallbacks&amp;#34;&lt;/span&gt;: null
+        &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;evidence&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;
+            &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Evidence Container 2&amp;#34;&lt;/span&gt;,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;customMetadata&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;encoding&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;custodian&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Jane Doe&amp;#34;&lt;/span&gt;,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;timeZone&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;locale&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;files&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;
+                    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+                        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:/LocationOfData&amp;#34;&lt;/span&gt;
+                    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+                &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;exchangeMailboxes&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;s3Buckets&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;sqlServers&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;enterpriseVaults&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;sharepointSites&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;mailStores&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;loadFiles&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;centeraClusters&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;splitFiles&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;dropboxes&amp;#34;&lt;/span&gt;: null,
+                &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;sshServers&amp;#34;&lt;/span&gt;: null
+            &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;localWorkerCount&amp;#34;&lt;/span&gt;: 2,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;repositories&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[]&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;parallelProcessingSettings&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerCount&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerMemory&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerTemp&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;brokerMemory&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerBrokerAddress&amp;#34;&lt;/span&gt;: null,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;useRemoteWorkers&amp;#34;&lt;/span&gt;: false,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;embedBroker&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+        &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rescanEvidenceRepositories&amp;#34;&lt;/span&gt;: false,
+        &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;loadProcessingJob&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;casePath&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;C:\\ProgramData\\Nuix\\NuixCases\\MyNuixCase&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jobGuid&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;989b79fe-43e6-4fa4-9466-19ea3d5ef644&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processingMode&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Load&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;startDate&amp;#34;&lt;/span&gt;: 1610047968374,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;workerCount&amp;#34;&lt;/span&gt;: 2,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;finished&amp;#34;&lt;/span&gt;: true,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;paused&amp;#34;&lt;/span&gt;: false,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;masterAddress&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;10.20.100.50&amp;#34;&lt;/span&gt;,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;bytesProcessed&amp;#34;&lt;/span&gt;: 135591,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;itemsProcessed&amp;#34;&lt;/span&gt;: 12,
+            &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jobSizeTotalBytes&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;135591&lt;/span&gt;
+        &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;participatingInCaseFunctionQueue&amp;#34;&lt;/span&gt;: true,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;processedBy&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;fdfc0544-4421-40df-bbd6-a200371b200d&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;errorMsg&amp;#34;&lt;/span&gt;: null
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+  </channel>
+</rss>
