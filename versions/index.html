@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        All Versions
+        <ul id="versions-list">
+            <!-- Versions added dynamically here -->
+        </ul>
+    </body>
+    <script>
+        const versionsList = document.getElementById('versions-list');
+        fetch('all-versions.json')
+            .then(response => response.json())
+            .then(allVersions => {
+                allVersions.forEach(v => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${v.url}">${v.version}</a>`;
+                    versionsList.appendChild(li);
+                });
+            });
+    </script>
+</html>
