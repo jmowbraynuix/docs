@@ -5,7 +5,7 @@
     <description>Recent content in Nuix REST SDK on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	  <atom:link href="/getting-started/rest/index.xml" rel="self" type="application/rss+xml" />
     
@@ -168,6 +168,21 @@ NTLM authentication is not supported.
     </item>
     
     <item>
+      <title>Getting Started: Quick Start Guides</title>
+      <link>/getting-started/rest/quick_start.html</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/getting-started/rest/quick_start.html</guid>
+      <description>
+        
+        
+        &lt;p&gt;The topics in this section provide instructions, guidance, and examples for accessing and using the core features of the Nuix RESTful API. For each endpoint described within this guide, instructions are provided using simple cURL commands. Any tool capable of making HTTP calls, such as Postman, can be used to achieve the same results.&lt;/p&gt;
+&lt;p&gt;Use the API reference documentation embedded in your instance of Nuix RESTful Service, &lt;a href=&#34;localhost:8080/nuix-restful-service/svc/docs&#34;&gt;localhost:8080/nuix-restful-service/svc/docs&lt;/a&gt;, to supplement the instructions in these guides.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Getting Started: Introduction to Nuix RESTful Service</title>
       <link>/getting-started/rest/introduction.html</link>
       <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
@@ -198,21 +213,6 @@ NTLM authentication is not supported.
         
         
         
-      </description>
-    </item>
-    
-    <item>
-      <title>Getting Started: Quick Start Guides</title>
-      <link>/getting-started/rest/quick_start.html</link>
-      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/getting-started/rest/quick_start.html</guid>
-      <description>
-        
-        
-        &lt;p&gt;The topics in this section provide instructions, guidance, and examples for accessing and using the core features of the Nuix RESTful API. For each endpoint described within this guide, instructions are provided using simple cURL commands. Any tool capable of making HTTP calls, such as Postman, can be used to achieve the same results.&lt;/p&gt;
-&lt;p&gt;Use the API reference documentation embedded in your instance of Nuix RESTful Service, &lt;a href=&#34;localhost:8080/nuix-restful-service/svc/docs&#34;&gt;localhost:8080/nuix-restful-service/svc/docs&lt;/a&gt;, to supplement the instructions in these guides.&lt;/p&gt;
-
       </description>
     </item>
     

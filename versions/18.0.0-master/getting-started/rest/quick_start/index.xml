@@ -5,7 +5,7 @@
     <description>Recent content in Quick Start Guides on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	  <atom:link href="/getting-started/rest/quick_start/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,7 +18,7 @@
     <item>
       <title>Getting Started: Set Up your Development Environment</title>
       <link>/getting-started/rest/quick_start/environmentsetup.html</link>
-      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>/getting-started/rest/quick_start/environmentsetup.html</guid>
       <description>
@@ -27,7 +27,7 @@
         &lt;p&gt;Before proceeding with the steps outlined below, ensure that the following prerequisites have been completed:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Nuix RESTful Service is installed and running.&lt;/li&gt;
-&lt;li&gt;Access to Nuix Licensing using any of the following options:
+&lt;li&gt;Access to Nuix Licensing is configured using any of the following options:
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#updating-nms-connections&#34;&gt;Nuix Management Server (NMS)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../configuration/licenseconfiguration.html#connecting-to-nuix-cloud-license-server-cls&#34;&gt;Nuix Cloud License Server (CLS)&lt;/a&gt;&lt;/li&gt;
@@ -53,29 +53,32 @@
 &lt;p&gt;For the purposes of these quick start topics, simple cURL commands are provided that can be run within &lt;a href=&#34;https://www.postman.com/&#34;&gt;Postman&lt;/a&gt;.
 To use Postman, visit the following URL and download the API client for the operating system you are using.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.postman.com/downloads/&#34;&gt;https://www.postman.com/downloads/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Once downloaded, run the installer to provision Postman on your computer. Details about the installation process can be located on the Postman website.&lt;/p&gt;
+&lt;p&gt;Once downloaded, run the installer to setup Postman on your computer. Details about the installation process can be located on the Postman website.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://learning.postman.com/docs/getting-started/installation-and-updates/&#34;&gt;https://learning.postman.com/docs/getting-started/installation-and-updates/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;After the installation finishes, launch the application by clicking the Postman icon on your desktop.&lt;/p&gt;
+&lt;p&gt;After the installation completes, launch the application by clicking the Postman icon on your desktop.&lt;/p&gt;
 &lt;h3 id=&#34;import-the-openapi-specification&#34;&gt;Import the OpenAPI Specification&lt;/h3&gt;
-&lt;p&gt;To get up and running quickly, the Nuix RESTful Service OpenAPI specification can be imported directly into Postman. When importing the API specification, a template request for each available endpoint in the API is loaded into a new collection within Postman, eliminating the need to manually enter each endpoint.&lt;/p&gt;
-&lt;p&gt;Use the following procedure to import the Nuix REST API specification into Postman:&lt;/p&gt;
+&lt;p&gt;The Nuix RESTful Service API documentation can be imported directly into Postman using any of the following methods. The steps outlined below are based on
+Postman Version 7.36.4.&lt;/p&gt;
+&lt;h4 id=&#34;option-1-run-in-postman&#34;&gt;Option 1: Run in Postman&lt;/h4&gt;
+&lt;p&gt;To get started quickly, click the &lt;strong&gt;Run in Postman&lt;/strong&gt; button below and follow the prompts to import the complete API directly into Postman with just a few clicks.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://app.getpostman.com/run-collection/9f9ca9b27283cd508f04&#34;&gt;&lt;img src=&#34;https://run.pstmn.io/button.svg&#34; alt=&#34;Run in Postman&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;option-2-link-import&#34;&gt;Option 2: Link Import&lt;/h4&gt;
+&lt;p&gt;Use the following procedure to import the Nuix RESTful Service API into Postman using a link to the API specification:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Navigate to the Nuix RESTful Service reference documentation to download the OpenAPI 3 specification.&lt;/p&gt;
+&lt;p&gt;Navigate to the Nuix RESTful Service reference documentation to locate a direct link to the OpenAPI specification.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Default docs location&lt;/strong&gt;: &lt;code&gt;&amp;lt;localhost&amp;gt;:8080/nuix-restful-service/svc/docs&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Locate and right-click the URL at the top of the page, then select &lt;strong&gt;Copy link address&lt;/strong&gt; to copy the location of the &lt;code&gt;openapi-docs.json&lt;/code&gt; specification file.&lt;/p&gt;
+&lt;p&gt;Right-click the URL below the heading at the top of the page, then select &lt;strong&gt;Copy link address&lt;/strong&gt; to copy the location of the &lt;code&gt;openapi-docs.json&lt;/code&gt; specification file.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../../images/downloadApiSpec.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Within Postman, find and click the &lt;strong&gt;Import&lt;/strong&gt; button located in the top menu bar.&lt;/p&gt;
+&lt;p&gt;Within Postman, expand the File menu, and then click &lt;strong&gt;import&lt;/strong&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;From the Import window, select the &lt;strong&gt;Link&lt;/strong&gt; tab.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Paste in the URL that was previously copied and click &lt;strong&gt;Continue&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;From the Import window, select the &lt;strong&gt;Link&lt;/strong&gt; tab. Paste the address you copied in Step 2 into the URL field, and then click &lt;strong&gt;Continue&lt;/strong&gt;.
+&lt;img src=&#34;../../../images/postman/postman_import.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Confirm the details of the import and make the following additional selections:&lt;/p&gt;
@@ -99,11 +102,11 @@ To use Postman, visit the following URL and download the API client for the oper
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Request parameter generation&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;Schema&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Example&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Response parameter generation&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;Schema&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Example&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Folder organization&lt;/td&gt;
@@ -111,15 +114,64 @@ To use Postman, visit the following URL and download the API client for the oper
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;ol start=&#34;7&#34;&gt;
+&lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;Click &lt;strong&gt;Import&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;When the import is complete, a new collection named &lt;strong&gt;Nuix REST-API Reference&lt;/strong&gt; will be available from the Collections tab. The available endpoints are organized according to how they are listed in the API reference documentation.&lt;/p&gt;
+&lt;p&gt;When the import is complete, a new collection named &lt;strong&gt;Nuix REST-API Reference&lt;/strong&gt; will be available from the Collections tab. The available endpoints are
+organized according to how they are listed in the API reference documentation.&lt;/p&gt;
+&lt;h4 id=&#34;option-3-file-import&#34;&gt;Option 3: File Import&lt;/h4&gt;
+&lt;p&gt;If you do not have a running instance of Nuix RESTful Service, but have previously downloaded the specification in either &lt;code&gt;openapi.yaml&lt;/code&gt; or &lt;code&gt;openapi-docs.json&lt;/code&gt; format, you can upload the API documentation directly into Postman with the specification that you have saved using the following procedure.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Within Postman, expand the file menu, and then click &lt;strong&gt;Import&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From the &lt;strong&gt;File&lt;/strong&gt; tab, click &lt;strong&gt;Upload Files&lt;/strong&gt; and then locate and select a previously downloaded API documentation file. (&lt;code&gt;openapi.yaml&lt;/code&gt; or &lt;code&gt;openapi-docs.json&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confirm the details of the import and make the following additional selections:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Under the &lt;em&gt;Link this collection as&lt;/em&gt; menu, select &lt;strong&gt;Integration Test&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Show advanced settings&lt;/strong&gt; and confirm the following selections:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Advanced Option&lt;/th&gt;
+&lt;th&gt;Recommended Setting&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Naming requests&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Fallback&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Request parameter generation&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Example&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Response parameter generation&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Example&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Folder organization&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Tags&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Click &lt;strong&gt;Import&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;When the import is complete, a new collection named &lt;strong&gt;Nuix REST-API Reference&lt;/strong&gt; will be available from the Collections tab. The available endpoints are
+organized according to how they are listed in the API reference documentation.&lt;/p&gt;
 &lt;h2 id=&#34;advanced-postman-setup&#34;&gt;Advanced Postman Setup&lt;/h2&gt;
 &lt;p&gt;Postman provides an interface that allows you to create and test calls to an API. Postman also allows you to configure variables for commonly used parameters that can be used to streamline your workflow when constructing API calls.&lt;/p&gt;
 &lt;p&gt;Use the following procedure to setup a few basic configurations in your Postman installation:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;With Postman open, select an existing collection or click on &lt;strong&gt;New Collection&lt;/strong&gt; to create a location to save any API calls that your create for the Nuix RESTful Service.
+&lt;li&gt;With Postman open, select an existing collection or click on &lt;strong&gt;New Collection&lt;/strong&gt; to create a location to save any API calls that you create for the Nuix RESTful Service.
 &lt;ul&gt;
 &lt;li&gt;Provide a name for the new collection and optionally a description.&lt;/li&gt;
 &lt;/ul&gt;

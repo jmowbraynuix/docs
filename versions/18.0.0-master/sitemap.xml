@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/getting-started/rest/quick_start/environmentsetup.html</loc>
+    <lastmod>2021-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/getting-started/rest.html</loc>
-    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,11 +38,6 @@
   </url>
   
   <url>
-    <loc>/getting-started/rest/quick_start/environmentsetup.html</loc>
-    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/overview.html</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url>
@@ -63,17 +63,17 @@
   </url>
   
   <url>
+    <loc>/getting-started.html</loc>
+    <lastmod>2021-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/getting-started/rest/configuration/clusteringsetup.html</loc>
     <lastmod>2021-02-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/getting-started/rest/configuration.html</loc>
-    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/getting-started.html</loc>
     <lastmod>2021-02-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -113,6 +113,11 @@
   </url>
   
   <url>
+    <loc>/getting-started/rest/quick_start.html</loc>
+    <lastmod>2021-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/getting-started/rest/introduction/case_creation/elasticcasecreation.html</loc>
     <lastmod>2021-02-10T00:00:00+00:00</lastmod>
   </url>
@@ -139,11 +144,6 @@
   
   <url>
     <loc>/getting-started/rest/installation/docker.html</loc>
-    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/getting-started/rest/quick_start.html</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url>
   
@@ -238,7 +238,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2021-02-23T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
