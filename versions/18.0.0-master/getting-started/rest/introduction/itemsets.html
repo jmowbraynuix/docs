@@ -1,0 +1,2141 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.74.3" />
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="shortcut icon" href="../../../favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="../../../favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="../../../favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="../../../favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../../../favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="../../../favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="../../../favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="../../../favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../../../favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="../../../favicons/android-192x192.png" sizes="192x192">
+
+<title>Part 8: Item Sets and Deduplication | </title><meta property="og:title" content="Part 8: Item Sets and Deduplication" />
+<meta property="og:description" content="Creating item sets and deduplication.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/getting-started/rest/introduction/itemsets.html" />
+
+<meta itemprop="name" content="Part 8: Item Sets and Deduplication">
+<meta itemprop="description" content="Creating item sets and deduplication.
+">
+
+<meta itemprop="wordCount" content="1334">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Part 8: Item Sets and Deduplication"/>
+<meta name="twitter:description" content="Creating item sets and deduplication.
+"/>
+
+
+
+
+
+<link rel="preload" href="../../../scss/main.min.83b6c00985b3107d4adc1d26018be0c01cbab3d0a8b254fa28cfe1c1cd3a6808.css" as="style">
+<link href="../../../scss/main.min.83b6c00985b3107d4adc1d26018be0c01cbab3d0a8b254fa28cfe1c1cd3a6808.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://unpkg.com/lunr@2.3.8/lunr.min.js"
+  integrity="sha384-vRQ9bDyE0Wnu+lMfm57BlYLO0/XauFuKpVsZPs7KEDwYKktWi5+Kz3MP8++DFlRY"
+  crossorigin="anonymous"></script>
+
+
+
+  <title>Part 8: Item Sets and Deduplication | </title>
+</head>
+<body class="td-page">
+<header>
+  
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="../../../">
+		<span class="navbar-logo"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354.78 112.16"><defs><style>.cls-1{fill:#fff}</style></defs><path class="cls-1" d="M347 183.9l15.09 23.39s10.15-13.53 14.12-19.6c7.15-10.93 16.95-7.85 16.95-7.85l-24.12 34.75 22.17 32.8H378.11L362.3 222.52l-16.46 24.87H333.12L355.68 215 334.16 183.9z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M117.77 188.44A51.43 51.43.0 00106 165.22l-4.12-4.65h-.08c-.5-.07-1-.1-1.53-.16-.79-.08-1.57-.18-2.37-.23-.55.0-1.1.0-1.65-.06-.76.0-1.51-.07-2.27-.07s-1.52.05-2.28.08c-.57.0-1.15.0-1.73.07-.79.06-1.59.17-2.38.26-.54.07-1.08.1-1.62.18-.86.13-1.72.31-2.58.48-.47.09-.93.16-1.4.26-1.31.29-2.63.64-3.93 1a55.81 55.81.0 00-30.35 84.35l6 1.71a51 51 0 0026.41.39l.36-.1a55.69 55.69.0 0137.32-59.92C117.81 188.69 117.8 188.57 117.77 188.44z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M147.74 199.68a56.38 56.38.0 00-6.15-13.61 54.88 54.88.0 00-23.84-20.86 56.53 56.53.0 00-8.23-3.06h0a56 56 0 0112.8 25.32h0c.32 1.52.57 3.05.77 4.6A55.73 55.73.0 0185.76 252c-1.47.51-3 1-4.47 1.35h0l-.75.16c-.89.21-1.77.42-2.67.59h0l-.9.14h-.24.0l-.91.14-1.38.21h0-.15c-.41.05-.83.07-1.25.11h0c-.53.05-1.07.12-1.61.15h-.48-.33-1.17.0c-.57.0-1.14.05-1.71.05h-.3c-.47.0-.93.0-1.4-.05h-.73-.58-1 0c-.74-.06-1.48-.15-2.21-.23h-.06l-.58-.06-.87-.1h0c-.82-.11-1.63-.27-2.45-.43h0l-1.23-.22h0c-.75-.16-1.49-.36-2.24-.55l-.91-.23L52.7 253h-.18.0a57.15 57.15.0 0036.17 18.52c.91.09 1.82.16 2.74.21.31.0.62.0.93.0.61.0 1.22.0 1.84.0h.46c1.06.0 2.12-.05 3.18-.11l.92-.07c1.19-.09 2.38-.21 3.58-.39h.25c1.12-.17 2.25-.38 3.37-.62l.92-.21c1.2-.28 2.41-.58 3.6-.94A55.86 55.86.0 00147.74 199.68z" transform="translate(-38.4 -159.55)"/><rect class="cls-1" x="271.55" y="24.35" width="11.54" height="63.49"/><path class="cls-1" d="M322 166a6.43 6.43.0 11-6.43-6.43A6.42 6.42.0 01322 166" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M298.08 247.47a11.38 11.38.0 01-10.69-10.18h-.26a23.26 23.26.0 01-20.6 11.59c-9.78.0-21.51-5.53-21.51-27.29V183.85h11.33v35.67c0 11.85 3.75 20 13.91 20a16.28 16.28.0 0014.94-10.43 15.56 15.56.0 001-5.79V183.85h11.84z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M180.29 183.77A11.37 11.37.0 01191 194h.26a23.26 23.26.0 0120.6-11.59c9.78.0 21.51 5.53 21.51 27.29v37.74H222V211.71c0-11.84-3.75-20-13.91-20a16.29 16.29.0 00-14.94 10.43 15.57 15.57.0 00-1 5.79v39.41H180.29z" transform="translate(-38.4 -159.55)"/></svg></span><span class="text-uppercase font-weight-bold"></span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link active" href="../../../" ><span class="active">Documentation</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block">
+
+
+<input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="&#xf002; Search this site…"
+  aria-label="Search this site…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="../../../offline-search-index.ef2f484505276feee8676cb664e4dc60656740e01ba64c3faeb5a559ab0e53ff5a1207effa3c4f01c9365c667c8b9c3bb0e644c6ada8dc9cd87e3f18cfacf5f5.json"
+  data-offline-search-base-href="../../../"
+  data-offline-search-max-results="10"
+>
+
+</div>
+</nav>
+
+</header>
+<div class="container-fluid td-outer">
+  <div class="td-main">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+        
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+    
+    <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+        
+        
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../overview.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Overview</a>
+    </li>
+    <ul>
+        <li class="collapse " id="overviewhtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started.html" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Getting Started</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="getting-startedhtml">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest.html" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Nuix REST SDK</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="getting-startedresthtml">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/installation.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Installation</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestinstallationhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationwindowshtml" href="../../../getting-started/rest/installation/windows.html">Windows</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationlinuxhtml" href="../../../getting-started/rest/installation/linux.html">Linux</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationdockerhtml" href="../../../getting-started/rest/installation/docker.html">Docker</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/configuration.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Configuration</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestconfigurationhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestconfigurationlicenseconfigurationhtml" href="../../../getting-started/rest/configuration/licenseconfiguration.html">Licensing</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestconfigurationclusteringsetuphtml" href="../../../getting-started/rest/configuration/clusteringsetup.html">Clustering</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestconfigurationunifiedlogginghtml" href="../../../getting-started/rest/configuration/unifiedlogging.html">Unified Logging</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/introduction.html" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Introduction</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="getting-startedrestintroductionhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionabouthtml" href="../../../getting-started/rest/introduction/about.html">Part 1: Verifying your Installation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionlicenseverificationhtml" href="../../../getting-started/rest/introduction/licenseverification.html">Part 2: Verifying your Licenses</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionauthenticationhtml" href="../../../getting-started/rest/introduction/authentication.html">Part 3: Authentication</a>
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/introduction/case_creation.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Part 4: Case Creation</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestintroductioncase_creationhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductioncase_creationcasecreationhtml" href="../../../getting-started/rest/introduction/case_creation/casecreation.html">Simple Case Creation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductioncase_creationcompoundcasecreationhtml" href="../../../getting-started/rest/introduction/case_creation/compoundcasecreation.html">Compound Case Creation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductioncase_creationelasticcasecreationhtml" href="../../../getting-started/rest/introduction/case_creation/elasticcasecreation.html">Elastic Case Creation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductioncase_creationelasticcompoundcasecreationhtml" href="../../../getting-started/rest/introduction/case_creation/elasticcompoundcasecreation.html">Compound Elastic Case Creation</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionfileingestionhtml" href="../../../getting-started/rest/introduction/fileingestion.html">Part 5: Ingestion</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionsearchhtml" href="../../../getting-started/rest/introduction/search.html">Part 6: Search</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionexclusionshtml" href="../../../getting-started/rest/introduction/exclusions.html">Part 7: Exclusions</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page  active" id="m-getting-startedrestintroductionitemsetshtml" href="../../../getting-started/rest/introduction/itemsets.html">Part 8: Item Sets and Deduplication</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionocrhtml" href="../../../getting-started/rest/introduction/ocr.html">Part 9: OCR</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductiontagginghtml" href="../../../getting-started/rest/introduction/tagging.html">Part 10: Tagging</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionproductionsethtml" href="../../../getting-started/rest/introduction/productionset.html">Part 11: Production Sets</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductioncasesubsethtml" href="../../../getting-started/rest/introduction/casesubset.html">Part 12: Case Subset</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionexporthtml" href="../../../getting-started/rest/introduction/export.html">Part 13: Exports</a>
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/introduction/clustering.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Part 14: Clustering</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestintroductionclusteringhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionclusteringviewclusterhtml" href="../../../getting-started/rest/introduction/clustering/viewcluster.html">Viewing the Cluster</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestintroductionclusteringsteeringhtml" href="../../../getting-started/rest/introduction/clustering/steering.html">Node Steering</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/scripting.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">User Scripts</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestscriptinghtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingintroductionhtml" href="../../../getting-started/rest/scripting/introduction.html">Introduction</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingelasticsearchcasesubsethtml" href="../../../getting-started/rest/scripting/elasticsearchcasesubset.html">Elasticsearch Case Subset</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingtagginghtml" href="../../../getting-started/rest/scripting/tagging.html">Tagging</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingcustomprocessinghtml" href="../../../getting-started/rest/scripting/customprocessing.html">Custom Processing</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../getting-started/rest/quick_start.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Quick Start</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestquick_starthtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startenvironmentsetuphtml" href="../../../getting-started/rest/quick_start/environmentsetup.html">Environment Setup</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startcheckingserverstatushtml" href="../../../getting-started/rest/quick_start/checkingserverstatus.html">Server Status</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startlicensemanagementhtml" href="../../../getting-started/rest/quick_start/licensemanagement.html">License Management</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startinventorymanagementhtml" href="../../../getting-started/rest/quick_start/inventorymanagement.html">Inventory Management</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startprocessingdatahtml" href="../../../getting-started/rest/quick_start/processingdata.html">Processing Data</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrunning_scriptsrunning-scriptshtml" href="../../../getting-started/running_scripts/running-scripts.html">Running Scripts In Nuix Workstation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedjava_enginejava-enginehtml" href="../../../getting-started/java_engine/java-engine.html">Using the Java Engine</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../examples.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Nuix on GitHub</a>
+    </li>
+    <ul>
+        <li class="collapse " id="exampleshtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../tutorials.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tutorials</a>
+    </li>
+    <ul>
+        <li class="collapse " id="tutorialshtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../../reference.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
+    </li>
+    <ul>
+        <li class="collapse " id="referencehtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-reference_openapihtml" href="../../../reference/_openapi.html">Open API Documentation</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+        </li>
+    </ul>
+</ul>
+
+    </nav>
+</div>
+
+
+
+      </div>
+      <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+        
+
+
+
+
+
+
+
+
+
+
+
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#item-sets">Item Sets</a>
+      <ul>
+        <li><a href="#ingestion-of-duplicate-data">Ingestion of Duplicate Data</a></li>
+        <li><a href="#ingestion-status">Ingestion Status</a></li>
+      </ul>
+    </li>
+    <li><a href="#create-an-item-set">Create an Item Set</a></li>
+    <li><a href="#item-set-status">Item Set Status</a></li>
+    <li><a href="#adding-items-to-an-item-set">Adding Items to an Item Set</a></li>
+    <li><a href="#add-items-status">Add Items Status</a></li>
+    <li><a href="#item-set-details">Item Set Details</a></li>
+    <li><a href="#item-set-duplicates">Item Set Duplicates</a></li>
+    <li><a href="#deduplicated-items">Deduplicated Items</a></li>
+  </ul>
+</nav>
+
+
+
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+        <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../../getting-started.html">Getting Started</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../../getting-started/rest.html">Nuix REST SDK</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../../getting-started/rest/introduction.html">Introduction</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="../../../getting-started/rest/introduction/itemsets.html">Part 8: Item Sets and Deduplication</a>
+</li>
+
+	</ol>
+</nav	>
+
+        
+<div class="td-content">
+    <h1>Part 8: Item Sets and Deduplication</h1>
+    <div class="lead">Creating item sets and deduplication.</div>
+    <h2 id="item-sets">Item Sets</h2>
+<p>An item set is a collection of items that have been classified as originals or duplicates based on whether there are multiple items with the same
+hash value. For the purposes of this tutorial, let&rsquo;s ingest the Nuix Engine documentation into this case again for a second time, create an item set,
+and deduplicate the items.</p>
+<h3 id="ingestion-of-duplicate-data">Ingestion of Duplicate Data</h3>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-1" data-toggle="tab" href="#tab11" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-1" data-toggle="tab" href="#tab12" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="1">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab11" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request POST <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/cases/43b070164ce8453ca30ed9e2dfcce67b/evidence/file&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;Content-Type: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;Accept: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--data-raw <span style="color:#4e9a06">&#39;{
+</span><span style="color:#4e9a06">   &#34;processorSettings&#34;: {
+</span><span style="color:#4e9a06">   	&#34;storeBinary&#34;: true
+</span><span style="color:#4e9a06">   },
+</span><span style="color:#4e9a06">   &#34;target&#34;: {
+</span><span style="color:#4e9a06">    &#34;path&#34;: &#34;/Engines/9.0.0.171/doc&#34;
+</span><span style="color:#4e9a06">  }
+</span><span style="color:#4e9a06">}
+</span><span style="color:#4e9a06">&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab12" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2322f9d3-678b-4ff4-b2bd-3a04d61510cb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;location&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/2322f9d3-678b-4ff4-b2bd-3a04d61510cb&#34;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h3 id="ingestion-status">Ingestion Status</h3>
+<p>The <code>functionKey</code> field returned from the ingestion endpoint above can be polled for status.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-2" data-toggle="tab" href="#tab21" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-2" data-toggle="tab" href="#tab22" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="2">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab21" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/2322f9d3-678b-4ff4-b2bd-3a04d61510cb&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;done&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;cancelled&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;result&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;token&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;1091c265-fce6-44ff-b5d4-3a30ff5273fa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2322f9d3-678b-4ff4-b2bd-3a04d61510cb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;progress&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">7581225</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;total&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;percentComplete&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;updatedOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591215161</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;status&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;statusId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591186910</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;startTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591186910</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;finishTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591217939</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;43b070164ce8453ca30ed9e2dfcce67b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;hasSuccessfullyCompleted&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;friendlyName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Evidence Ingestion Function&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseLocation&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/Cases/HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestor&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;username&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;action&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;AsyncBulkIngestionFunction&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;options&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#34;reloadQuery&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;processorSettings&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;processText&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;processLooseFileContents&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;processForensicImages&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;analysisLanguage&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;stopWords&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;stemming&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;enableExactQueries&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractNamedEntities&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractNamedEntitiesFromText&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractNamedEntitiesFromProperties&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractNamedEntitiesFromTextStripped&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractShingles&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;processTextSummaries&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;calculateSSDeepFuzzyHash&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;detectFaces&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractFromSlackSpace&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;carveFileSystemUnallocatedSpace&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;carveUnidentifiedData&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;carvingBlockSize&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;recoverDeletedFiles&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;extractEndOfFileSlackSpace&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;smartProcessRegistry&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;identifyPhysicalFiles&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;createThumbnails&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;skinToneAnalysis&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;calculateAuditedSize&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;storeBinary&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;maxStoredBinarySize&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;maxDigestSize&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;digests&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[],</span>
+            <span style="color:#4e9a06">&#34;addBccToEmailDigests&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;addCommunicationDateToEmailDigests&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;reuseEvidenceStores&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;processFamilyFields&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;hideEmbeddedImmaterialData&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;reportProcessingStatus&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerItemCallback&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerItemCallbacks&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#4e9a06">&#34;evidence&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+            <span style="color:#000;font-weight:bold">{</span>
+                <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;customMetadata&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;encoding&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;custodian&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;timeZone&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;description&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;locale&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;files&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+                    <span style="color:#000;font-weight:bold">{</span>
+                        <span style="color:#4e9a06">&#34;path&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/Engines/9.0.0.171/doc&#34;</span>
+                    <span style="color:#000;font-weight:bold">}</span>
+                <span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#4e9a06">&#34;exchangeMailboxes&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;s3Buckets&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;sqlServers&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;enterpriseVaults&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;sharepointSites&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;mailStores&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;loadFiles&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;centeraClusters&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;splitFiles&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;dropboxes&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+                <span style="color:#4e9a06">&#34;sshServers&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+            <span style="color:#000;font-weight:bold">}</span>
+        <span style="color:#000;font-weight:bold">],</span>
+        <span style="color:#4e9a06">&#34;localWorkerCount&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;repositories&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[],</span>
+        <span style="color:#4e9a06">&#34;parallelProcessingSettings&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;workerCount&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerMemory&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerTemp&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;brokerMemory&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerBrokerAddress&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;useRemoteWorkers&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;embedBroker&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#4e9a06">&#34;rescanEvidenceRepositories&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;loadProcessingJob&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;casePath&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/Cases/HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;jobGuid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;3658161a-2a7d-423c-b288-0f839f2da367&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;processingMode&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Load&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;startDate&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591191176</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;workerCount&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;finished&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;paused&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;masterAddress&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;1.1.1.1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;bytesProcessed&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">7581225</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;itemsProcessed&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">192</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;jobSizeTotalBytes&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#4e9a06">&#34;participatingInCaseFunctionQueue&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;processedBy&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;nuix-restful-server-1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;errorMsg&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="create-an-item-set">Create an Item Set</h2>
+<p>Let&rsquo;s go ahead and create an item set.  By default, items are deduplicated by their <code>MD5</code> hash.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-3" data-toggle="tab" href="#tab31" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-3" data-toggle="tab" href="#tab32" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="3">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab31" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request POST <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/cases/43b070164ce8453ca30ed9e2dfcce67b/itemSets&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+--header <span style="color:#4e9a06">&#39;Content-Type: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;Accept: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--data-raw <span style="color:#4e9a06">&#39;{
+</span><span style="color:#4e9a06">	&#34;name&#34;: &#34;HelloItemSet&#34;,
+</span><span style="color:#4e9a06">	&#34;description&#34;: &#34;My first item set&#34;
+</span><span style="color:#4e9a06">}&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab32" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;12d214b2-d4fc-4f6d-8142-b33df4c18f89&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;location&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/12d214b2-d4fc-4f6d-8142-b33df4c18f89&#34;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="item-set-status">Item Set Status</h2>
+<p>The <code>functionKey</code> field returned from the ingestion endpoint above can be polled for status.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-4" data-toggle="tab" href="#tab41" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-4" data-toggle="tab" href="#tab42" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="4">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab41" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/12d214b2-d4fc-4f6d-8142-b33df4c18f89&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab42" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;done&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;cancelled&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;result&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;token&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;1091c265-fce6-44ff-b5d4-3a30ff5273fa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;12d214b2-d4fc-4f6d-8142-b33df4c18f89&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;progress&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">730</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;total&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">730</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;percentComplete&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">100.0000</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;updatedOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591533221</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;status&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;statusId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591533023</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;startTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591533023</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;finishTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591533501</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;43b070164ce8453ca30ed9e2dfcce67b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;hasSuccessfullyCompleted&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;friendlyName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Item Set Creation Function&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseLocation&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/Cases/HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestor&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;username&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;action&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;AsyncItemSetCreationFunction&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;options&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#34;itemSetName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloItemSet&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;batchName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;itemSetDescription&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;My first item set&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dedupByArg&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;itemSetContructionQuery&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;custodianList&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dedupArg&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;MD5&#34;</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#4e9a06">&#34;participatingInCaseFunctionQueue&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;processedBy&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;nuix-restful-server-1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;errorMsg&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="adding-items-to-an-item-set">Adding Items to an Item Set</h2>
+<p>Next, we are going to add our items to the item set and deduplicate.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-5" data-toggle="tab" href="#tab51" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-5" data-toggle="tab" href="#tab52" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="5">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab51" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request POST <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/cases/43b070164ce8453ca30ed9e2dfcce67b/itemSets/HelloItemSet/items&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;Content-Type: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;Accept: application/json&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--data-raw <span style="color:#4e9a06">&#39;{
+</span><span style="color:#4e9a06">	&#34;batchName&#34;: &#34;AllItems&#34;,
+</span><span style="color:#4e9a06">	&#34;query&#34;: &#34;&#34;
+</span><span style="color:#4e9a06">}&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab52" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;9490cb69-508b-43a2-8e60-351e42c7db4d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;location&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/9490cb69-508b-43a2-8e60-351e42c7db4d&#34;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="add-items-status">Add Items Status</h2>
+<p>The <code>functionKey</code> field returned from the add items endpoint above can be polled for status.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-6" data-toggle="tab" href="#tab61" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-6" data-toggle="tab" href="#tab62" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="6">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab61" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/asyncFunctions/9490cb69-508b-43a2-8e60-351e42c7db4d&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab62" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;done&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;cancelled&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;result&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;token&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;1091c265-fce6-44ff-b5d4-3a30ff5273fa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;functionKey&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;9490cb69-508b-43a2-8e60-351e42c7db4d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;progress&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;total&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">730</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;percentComplete&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0.0000</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;updatedOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613592046841</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;status&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;statusId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613592046840</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;startTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613592046840</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;finishTime&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613592046898</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;43b070164ce8453ca30ed9e2dfcce67b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;hasSuccessfullyCompleted&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">true</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;friendlyName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Item Set Add Items Function&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;caseLocation&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/Cases/HelloWorld&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;requestor&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;username&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;action&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;AsyncItemSetAddItemsFunction&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;options&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#34;itemSetName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloItemSet&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;batchName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;AllItems&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;itemSetContructionQuery&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;&#34;</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#4e9a06">&#34;participatingInCaseFunctionQueue&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;processedBy&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;nuix-restful-server-1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;errorMsg&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="item-set-details">Item Set Details</h2>
+<p>Let&rsquo;s retrieve some details about the item set we just created.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-7" data-toggle="tab" href="#tab71" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-7" data-toggle="tab" href="#tab72" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="7">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab71" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/cases/43b070164ce8453ca30ed9e2dfcce67b/itemSets/HelloItemSet&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab72" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;HelloItemSet&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;description&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;My first item set&#34;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;batches&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;batchName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;AllItems&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;createdOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613592046847</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;batchName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;21/02/17 14:52:13 EST&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;createdOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613591533141</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">]</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="item-set-duplicates">Item Set Duplicates</h2>
+<p>Let&rsquo;s retrieve the duplicate items from the item set.  There are 344 duplicates in this item set.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-8" data-toggle="tab" href="#tab81" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-8" data-toggle="tab" href="#tab82" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="8">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab81" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v1/cases/43b070164ce8453ca30ed9e2dfcce67b/itemSets/HelloItemSet/duplicates&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab82" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;duplicates&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#4e9a06">&#34;192d4465-4120-4f70-9ecc-21e75fa00fdb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;69204627-94dc-441a-a285-ba30ba5889f9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;50ce3b7d-8eb5-49a5-af5b-0ad69367b8f5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5cd8a487-37e9-43b3-aec3-1f5b47a18f52&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6392ced4-f3af-4978-a61a-a1543bdbf235&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;59585660-9ade-4856-950d-fb606a6f9dd5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;615768ce-8421-42a2-a9aa-e2e38323073f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d4fc148f-db20-4a56-89e0-c1689fe920cd&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;33dcbb88-eb12-40f5-aab4-fbf1fa56194f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d7eec968-5034-4c82-a16a-a2ab0004b2e4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1ba9ae97-c48c-42eb-a640-5395fd6a9947&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cd147740-2323-4b8c-8302-75b8d1152062&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7d93b4b9-49c2-42d8-8f4e-becbf06a2f7d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e7cf0ef5-3863-4b9b-b056-b2db5662ec40&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fb0a2f1c-f605-48d3-97ca-2eacbb819b7b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;49e1273a-dc20-4ab5-a844-c947c24ff653&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d0689df1-b19e-45e8-87f9-f603a4e6229a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2d2beb9d-9a8a-4c86-a06c-d0c8b780929f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f5be4e17-b3d0-427c-9e45-228d1401f62c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;36b5af07-d640-49c8-89d2-6982bd9ce2e8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5909249c-f595-49a0-9083-8dbb7aa9adef&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b0a336df-7160-4e34-9c67-0c52f305f60e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;70a65d83-f82f-4d98-ad63-301a93d5a62d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;421b9636-d756-453e-b4ae-011df0bb3a40&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3aa3110a-f877-4d9f-9e45-6e5c84ee7b03&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3943799e-eb7c-4215-bf01-1748fcfb7c35&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d965949d-34bb-403c-ae0a-c5a43c229574&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;98da888b-7e03-4a78-bcc2-0e53087ff45b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e797ff62-086e-40a7-a08f-4a1acc989d12&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;def5ba51-1c23-4f2b-9e85-5a6ce76a015d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;641d4627-1c5a-4b29-86ff-deb63d682da9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;354e021f-a375-47be-9379-638ee14d6dd0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;02c32fdf-2f5f-4d65-95aa-64ea73d301c5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5c05e778-f348-4c1a-80d1-d25563a51a6c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cdf87e96-6ba6-4fca-9d74-54dbf9849c69&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;82547af3-8eb6-401f-9264-d81314864f52&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9aae6735-3e64-4047-9e10-8260d8dd61db&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8f430563-6c7d-4870-81d3-f206735eb0e8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7d57b451-2bd6-4128-aade-137839abccf8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f15f6647-ee54-435e-8627-c1617d7e4a5b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6ed745e9-7c3f-4323-90f3-510d49e081fa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3eb87859-b52e-4c29-81fa-3d1e9adcd488&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5afb1fdb-d363-4da0-add9-d86825e28a3c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;80620833-afb1-45e0-9384-337dec5028d0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1fed7de1-d150-4cf6-b5aa-eb2e5f87058d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3099fd8e-2633-4071-97fc-3a337a954fda&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;25c0b8dc-c783-4ad2-adc6-b2f303ed92da&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f1b05001-3b14-4c85-b07c-e6aa9a49d611&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c8fb7bc7-600b-4fd0-80e2-114a97c87f9b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e22cdd4d-2cea-463c-893c-e3bf55e2ec5a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1d5845dd-8f42-4aa0-9fc9-60028b846126&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;596e9178-e3b5-474c-bcce-bd26af84174b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;81f69274-3707-4d03-8608-1e4a3a7ab8ac&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;77897169-4839-4ff8-bfde-f5be066f7bb6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;48783fea-ed1e-4da4-afb4-e4e13168b77b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;62877335-b628-4f2c-951f-beb64e9221e7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;accce1a5-c5ff-498f-88a8-987d662c8f98&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5b07a955-fdcb-409a-a3b6-a6be82b80652&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;24a64dfc-6a10-41f9-9912-3ba32a482e1e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2ff5b86c-7d80-488b-bee9-564a8df3d05b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8edbe74e-f3f7-44e5-9bb8-86364069e82c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;966da79b-abaa-4c7a-a55e-169d598e1cb2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;70f97097-e8c8-4e07-af68-3dc5733170ea&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d8918e4c-bca9-4426-9637-cde92619f4c2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;011d60e8-6ea2-4590-82ec-7ca1e809b6d5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a32a3ac8-8df3-4836-9a94-5a9cc1e50791&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9ffd7d91-8c01-49f3-892c-bf86e9ccb176&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d78913f2-d9e5-481c-8bad-0d6632022e03&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;45233604-6d08-4684-bf21-b96ed6c6bf0c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;48bea607-903e-40cc-968f-7940536f9553&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;060af451-7949-4ae9-a35b-c4bdae9347f9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;51933023-0e3d-4d17-9804-5bfe125ddbaa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6c1f742a-2f09-4b72-bf5b-ca226d49e2a6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c0ed30f7-2451-45af-9af0-6ded2a2211cf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e1b8a691-3a14-4648-b9d5-d4e1057cc0f8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;0f2a5eed-5843-450a-8207-4712c4e1bafb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bb1d853d-b4a0-47bf-9aa0-092631bde92b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;90f2b351-0fd9-4257-99aa-243294515067&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3d26cf69-a12c-45b4-b464-17b0a225213e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;16f852e0-ffe8-4acd-92c5-68535f51d3f5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9ad7d617-a6cd-42e3-8871-b133f102945a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a046d0a1-eff4-40ec-9eda-fea5ef30c914&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5dc0b129-ffa1-4367-9a92-d322a8b2569b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ace342cd-3f1e-463b-a5a3-3be751362227&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7401ef1e-eb92-4132-9c88-059a53a52ccf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9f7f2dcd-0578-4c9f-891e-39fadd7c872e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7163b094-4e5e-4a6b-9058-0c723f464a3a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bd7afaf5-99e6-4e1d-8951-a7f291160b5c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;12329d30-93b1-46fa-872c-9b27f571050e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5b8a3812-16d5-45d6-bceb-85b639a34a1e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a68939f0-502c-482a-bf3a-68bc0d4a5a7d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9d2c8516-4d6e-4056-a512-f5421fb6e4c7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5655c3ec-1ed7-4a07-8862-62826de5320d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a9e2dad3-1e14-4e99-b91f-7dffbd8a06e9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fa40773a-c889-4f04-8066-b3dce8d3cef0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;15e575fb-fcf9-445e-b165-64f1c55354a1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;befb11ed-0851-4e21-8089-8e11562721fc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3afa6979-4039-4b48-8303-c683c163cc4a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4dc31d4b-0fe5-43cf-be45-0a993307e2b7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;0dba92f2-9098-4ef3-a4f8-b43f1de44b47&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a93485a2-c9b6-439f-a35d-a2f2143f2870&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f0e13f75-0b47-4369-8e10-94676b01bba4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;69b19079-2baf-47e0-9c5a-c4919225b4ac&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;68e04266-6e0a-49d8-ae2d-51428b349d93&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ff7374b0-5e60-4603-8026-08e0b0f657f9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1b427285-83a5-46eb-97db-0c09b5734b66&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;eb6fef94-d43e-4916-9b11-12704b531f03&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a611ca69-7d1d-4736-a6a3-05cbca76bc16&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8c2d3f75-2f27-4e22-80df-900b3b004de0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;37f04030-03aa-4d4e-9b38-6836465944c6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;0a80c14f-f299-4985-9366-c7d5f112d595&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fded93d5-49ef-4d25-a581-9b9eab8a7255&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2b0d8e22-a7c6-43f2-825e-1eece4b9cfbf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;33c9fbea-5151-42c7-be04-871adddb7e12&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;be2bc1bc-ccf1-4d0b-a1e3-011258e2dcfe&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f5a9e1e3-0b4c-4b97-b2e2-ece62a02e750&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ea233053-720e-4bc2-9898-51d99707fd1f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f5ffbedf-b5e4-4274-8572-77e5655feb26&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5b7b695f-6b69-4b77-80cb-95e31f74b108&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7082f088-e558-4f5b-9ae8-418db1e1a3b1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;91738acd-8f4d-4ac5-874a-5ef97e3bdd05&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;74a80c52-1649-4af4-a230-3effd3f89f06&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;845ec518-629a-41ba-aa5e-05d41fc079ad&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ecdfe041-7e28-4159-ad11-95bb74680e43&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f1801614-7286-4a76-a9ac-0e1d5c8ec25c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cd1172bd-1edb-4e66-bbd6-0f7a30cfd869&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8e1b2483-2924-4961-8d01-5e8228f2a1bf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b518a531-1fb5-4d6d-9608-940a57b59c02&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;53eed8ec-7204-4da7-8179-0c0f6fb276ab&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1305823c-272f-4e6f-b1b2-19b8bd2e1da2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4d27d90c-597d-47b6-bec5-10ec58f76929&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;914ea784-706c-4da4-b138-bb6e81939ac6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;77219f44-f9b3-4636-8f40-c485f0b1386a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2c91111f-776f-49db-a260-f30b00729ad2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d95adc83-2051-486e-8c22-ab9ad9b9b856&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7afbc31f-9d76-4bce-a185-ae3e28f690f4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5a048e18-d437-4be9-baa1-fd8b4f5e08f3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f466612d-bbeb-4739-a895-a6a8e1f74832&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4eaca35e-0adc-4996-a52b-1114ee85170e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;875df35a-aedb-43f2-aca5-7cd3b87fc2e5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;00ae438b-5547-4495-94c1-c3a4cec30829&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7f43d3b0-2840-4e4c-8cb0-21d27de6d181&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2571bb06-3a07-4633-ad07-802c6ab60242&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f593a196-d6c5-43ee-8672-e4c470bb01e6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c9c0daaa-df79-424a-8e08-51b0b3947783&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dfcfa2d3-3823-43e0-b07d-d609daa41451&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a568caec-05e4-4fde-b952-39f8df69eb0e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d582ee4c-9246-466c-96a3-2b174c462169&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f9d0e1b9-2150-41c1-8af6-3301000d3ebb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cc720409-02a5-46cf-9fa2-9ab05b0da254&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;46763e9c-243b-43c5-87a9-f3e9c8a1fcab&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e5fcf39b-bce8-49bb-abe7-063422d9f752&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;08d89c1d-f1e0-4a28-81f1-e7c72217d71f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4b191168-c260-4d09-a2e2-ec9df3cdb47b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1944dbf4-ff4f-46d8-b15b-aee2ba5b0a60&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;48a6181e-55ce-455b-a29b-59195b73a31d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bbc7b8b9-9838-4404-9359-37c2a5750670&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;59c0ad6e-d6a2-4dd9-8462-1a48568ca75f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ea651780-173a-451d-b0eb-882ce356c545&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;267242a0-95a0-4a20-a64f-1779d8d605ac&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d2fb2fe0-94d7-4185-a8e9-f0b8c78ecba2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e50ce77b-e07e-4c90-8216-c572e6f7af87&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a4a1ef9e-f1e2-4745-afef-23ab7ce13ca0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;58cfa2d7-41b7-4156-9d1e-f7ef14c4f924&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;531273a9-5e9f-42e3-863e-85ae1308d7d6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1ade2935-089e-4260-a3ed-55418746e848&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c2d8c530-d96d-436c-bc2a-d279276b5ae2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9694266a-6950-4bff-97e4-ed1aabb38cc1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;888512af-2564-4ef7-ab7b-87997a33041d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e27dd502-3d55-4b93-b006-51531ada6886&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;02259947-ff53-4c41-ad92-ebae6bc10841&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dece6369-361b-46e8-a3bf-e0012a3407b3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cee2bb44-2306-4077-be25-ed3539285fa0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6d21e34b-96f6-4009-8c87-5b77c5693b22&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d7ac1c40-7581-4df9-a9d8-064affdc5bfc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bb2cbf39-fc89-42a0-b076-7153020cae76&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;be55540c-699c-4d67-abb9-1cc4405ae92d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;20935378-c0ed-49b8-ac5c-144f6c298520&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;56061170-6d14-4be9-9956-9abdc8319622&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5564662f-58b1-4e9e-970a-551593b87321&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;00605178-da28-4e22-804e-9d68c18d2852&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;89157531-b38b-4366-89df-eaf8568c4a24&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d96c1bb1-8f4b-46f0-9f0f-db954d2e594a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6b1fab8f-9a35-4e47-8b8b-6d8fea2ac42a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;eca63772-7be1-4ea8-8219-7416848ec249&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fe7bb180-696f-4dee-88e3-f223872974c6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ae8d40d5-6ad1-4698-ad17-0b418d8fb52c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ba9cc861-3609-4ca6-88d8-43a3fb9cb728&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5cc8867d-2fcc-4724-b4f6-fd738ba1c671&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;99a1979d-cb2b-42e0-b67b-e9059ff5137f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fd35756a-ebec-4784-9588-449b8600010d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;33362229-520a-45c1-b843-2072ee029ce5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4306b9b7-d37d-461a-b88e-fd2370989c51&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ac645149-f832-4af7-8b91-47aa5f72d3c4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c7d03133-060d-46a4-ad63-59c57eb2144a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f3f197af-84ec-4aaf-af8a-116f30531f5b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2162cbcb-9ece-422a-821c-12f1b1de2e8c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1053bffc-5646-4b4f-bc95-1ba843b6088d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b6a21b72-a9b1-42cc-8b4c-c34f9e454c66&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a736384b-89e4-4284-9f71-e1843a9d478b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;afcdb5fb-36be-44b1-9320-501d7f487355&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a222f874-d5f5-46f5-9454-75a5e6d808cb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;41ccc128-0991-4d4f-accf-70ad2ea41d95&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5ff74eba-f3cc-4a3a-98b9-066b2886c2c8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6c248e89-94bc-4255-84c7-cb09a42e086c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d1773f81-601c-43e2-9f1e-d978e5e09656&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;21b7aa8a-c7cf-4847-8bff-07eaa570e8a0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f0d0944e-34f4-4b8f-b072-69cb740f47a9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4b39aa39-5d56-4408-955d-141e5c4d181f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9cd57e88-35e3-42dd-99a1-16a7f21949ee&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;12f24503-c781-4678-8cc1-6ddf49af2ed2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c1bc2518-1c61-4c5c-8d45-35ff256c66f4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;722d206c-a4e5-4350-9c44-0cb6092cf9c7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bf6479ab-21a1-4e4a-ba47-1bc36d853efb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7709e135-e5b5-4558-8946-1787b92d5260&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5a614ed9-a292-45c6-819a-720f3741661a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8755246b-8ec6-4a63-aee6-ee1caab0721d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6ff0011e-3a9c-4150-9688-4932b7c1ba78&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c117a2d9-a3aa-4932-bbff-c6e6b6da1bc0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;38277004-af1c-488b-b326-684d01b9757b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d26cf5fb-219d-48fe-bc37-5fe83890913d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c0783a0c-f76f-4dcb-aaae-4949194d87a3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b895106e-2f76-4355-8a2d-f44dfb7a75bd&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;0348a75d-4609-43c9-8944-f3efb8ca2a4b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b14ba50c-5cbd-4c8e-b14e-9982e3ad2a33&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8dbac113-563b-45ee-a9c8-37c272ab0da3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;862b5b45-950b-4f62-9ab9-6c53fcbf17d6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3e3bb8bb-09ac-48e1-a059-bb852f2a68b7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;533ab1a0-6b03-41d9-9dd2-fb416ebbdaa4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;529d6c44-7d35-4182-9a21-6a5a2077748b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dd67e6f4-5a0e-402f-bb95-e332a5bccd94&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fd0352de-1315-4abb-9111-fa4fe1751013&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e51a282e-7d74-4146-9456-fa2f9932db6e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ec108563-d0d8-4005-bb61-46439de8d667&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3b9b0e34-dea3-4f74-83df-1af53f70056e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fc50a41e-1bb1-451e-860b-f04ce1508ba5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;89275ca0-6170-43e9-9d91-8c7fe9ec0464&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3a3e36e7-1302-4f0b-abb3-85c2c96cc89c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3aaf1277-ab4b-4c34-9b6a-5246a32e4d02&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;00b4cc85-6d22-4b94-8854-1fc0b2056d1e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bcf489ef-dec8-4bb6-960d-e848335c851d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;25bfa985-1742-4ca2-9f63-63d7717345de&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;66518129-37d6-4614-be18-631de52e2f8a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d8169b84-6e64-41a3-a6dc-64efb351cecb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6ad10241-f5ed-4d24-b533-7fe593209430&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;850447f3-b22a-45ea-83ee-e612ef9b14e6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dccad404-fe95-4f8a-a739-6c1c576093cf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ef4debf1-70fc-4448-a001-8f0d461b786a&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;dd8d7ab7-bc62-4ed7-a690-a8eb717117fe&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;41d63136-b1e8-421d-be0f-037d73a8690d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;26ed1ca7-7190-43ff-ad91-f062bd4432aa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e2db1c03-2205-43f7-888b-3a2708f8e8a4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;ae50c435-d2d4-4f9b-a358-b1c0bfccee17&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;73826713-5619-4207-995b-229133775ec3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cf7a498b-a96f-44eb-8b36-a829802664b6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;24c90145-ad7d-47ab-b4f4-cba6df24a662&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;59ade687-aaaf-457c-b8c9-f9537a6ad4f9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;cbd05bc5-142e-4429-a8de-3b14418dd980&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3b8217d1-0e9b-4e85-acd4-658c581fa9f4&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e89dc911-0922-4aa4-8d54-83f39e1083b5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f7065a52-45eb-4d30-acf2-b3470bf8a58e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;11e864ee-f1e0-4160-a6c3-20553dccf761&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b5ba63d7-60e2-4d71-9e44-0652d9610765&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;70643357-2142-47be-98bf-660c96be806e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;daf0312d-5cc9-474a-9854-4dc8a7660b20&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4ba29be6-b125-4624-8957-c9233268c447&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4c6c802e-2898-4829-82aa-d5f62a17873b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;75cef09b-9592-4f38-a1fd-7911ac644195&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;51762c95-9192-4810-81b2-110bf2c5915d&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b066b177-53f5-4bbe-8afc-0df7124d03ea&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e8551f36-317e-4718-8425-6827e0656f72&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;3d83138c-9ea9-4381-af11-bb1ebdd8c321&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c9b6632a-a5b9-4a78-86bb-460559006290&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b9651bed-a163-4110-a998-8ebfebd0b4de&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;51102838-ef06-4e1f-87bc-f726daa76d86&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bb6828c2-9d0b-4f95-a479-c8df06752fea&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;96d40ca3-e41b-4a60-878c-e4f377ead0a9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5b212c18-a5fc-42e9-b738-0eca4db5a79b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;60b0c015-7797-426e-8fec-7d663db35375&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bd49a135-5799-40f2-b245-4641905cf317&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6263d314-b3e8-4573-b7ab-48d5deeec3b6&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6d103232-2269-4275-a1e3-2eb9079fcd53&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;913e1d3e-786c-4f3a-b27c-9b92b7e2300f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;897ea5d9-0e32-47ee-a3ba-6de93ccf213e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f25288fc-7ed2-44f2-94a8-22892a8c2e30&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;03f335a8-62b2-4199-a464-d541015d9b24&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a5960fe9-cbc3-4aa3-8878-bbd144b1803e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f28cd50d-f73b-4954-84a5-af7efa81f4aa&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5872e56d-8698-44a7-afec-673c5d31cc23&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;77c7dad8-99aa-4555-b2bf-2173f3e894a8&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;db7d4c77-45ea-4e5f-8ece-f1fae9c3da1f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;21f11d05-8877-4314-bd96-5619d5f9055e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4b698d27-04a0-4dfe-881d-f6baeac6efbd&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;51ec29f1-bb27-4a36-b143-e6230762aa75&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;28b42916-32f2-4735-864d-8c83d16b0faf&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;75be53d0-9ecc-4920-98bc-ff4672f71576&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f42ead25-6085-4cde-9d02-80fdc4b1c560&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;07679a57-21d9-4405-bccd-980c36305703&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;852afa09-6a0f-4cd8-b4b6-23537d28e5db&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;10501808-adf3-497c-9f89-40174d8ce843&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f3858449-dfe3-4754-bc64-afb7cdd3a806&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;4c2f890e-6671-4aa3-8b85-a50a4500b2d7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;641911f6-a5d0-4065-82d2-fbae4d8faa17&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;836a3258-0f12-4559-ad33-621fbc6e8e02&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;45b07948-ebf8-4696-b9ae-0b0148586ba1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;1ad7d492-3b21-4a1d-bf30-2aa2f3c32023&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;b402ea86-3aa7-4ce3-a78b-286f00036640&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;60497511-8a19-48bb-aef5-638e88f240bc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e2f2f131-4de0-4288-93b7-9e3cf5361cd1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bc70adad-4e24-4d05-88a7-1a25d2796328&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7d3b6b7e-f82b-4444-94b1-f3ee95f77901&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2347f415-9338-4bb1-9081-975a681800ed&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;a70af5c5-c92e-4b0d-8d12-0e17b2cda9f7&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;e914d510-d80d-47cc-98e2-6e36ac5e6962&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;f819cd03-09b3-4a21-abd7-64cf9df375a5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c60db473-f4c1-4dc7-85f0-82ed89777cbb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;86205408-aa38-446a-b831-1de9187c6b18&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;6a89a136-effb-4b9f-9548-8e31cd4701f0&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fc8178d1-c12b-441c-b22c-772d6c37e964&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;233722f4-1b45-48e5-88a4-889feb0ed324&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7d653c8d-0535-42fa-943e-3435bbbe7744&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9cefbf00-ed92-4de2-aed6-fe00180282ce&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;721f4f92-a253-46fc-8e7e-1f40e60cc4e2&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9bbff842-9116-4c92-bcfc-cdf0f354e723&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;66157bf3-3ff7-4a8a-aefb-85a12ccc8bc9&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;2526daca-f956-4e50-b5ac-b445f6f5b544&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d8fa6085-380b-4b55-91d6-d08317075918&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;58fbb1d3-3831-4de9-bd74-af29589b9e1b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;bd05bd49-5d93-47c9-a9f8-0b8bfee92db3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;080218b1-7722-4a5c-a436-654bd1a71089&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;9445eb38-5490-4c4f-9dc8-73f783571800&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;5abee805-2c39-4a3a-84be-a3d087b10104&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;7c8fcd2e-b9c8-41ec-bee9-b8a66c92779c&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;51693fc1-0fba-4a2b-b8f7-6fc36d025cda&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;669b1097-5a8a-4927-af04-f7bf85276ac5&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;22af615e-473e-4a66-ae61-12216c428d13&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;14eb4d44-980e-4933-a498-77142523fba1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;701b26a8-868e-4bfc-af0e-489e4cc5c075&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;c77218f8-9e61-42db-b725-eb196fe9c227&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;d643d1f5-cb81-458c-9899-9c4f5bb8e0f1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8b732d40-4a85-46aa-a532-4633d35dc87e&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;0441bb00-b804-433c-be20-ee1ceb6a9dbb&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;8256f64c-2f1a-4fad-84da-c885e67d6ce3&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;82fc8dd1-ccbd-41e6-bfed-fd87f1d06ced&#34;</span>
+    <span style="color:#000;font-weight:bold">]</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+<h2 id="deduplicated-items">Deduplicated Items</h2>
+<p>Finally, Let&rsquo;s retrieve the deduplicated items from the item set using our search endpoint.  For brevity, the max number of records requested has been reduced
+to 5.  As you can see, there are 386 items returned using the <code>item-set-originals</code> query.</p>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link active" id="nav-9" data-toggle="tab" href="#tab91" role="tab"
+           aria-controls="nav-home" aria-selected="true">Request</a>
+
+        
+        
+
+        
+        
+        
+
+        
+
+        <a class="nav-item nav-link" id="nav-9" data-toggle="tab" href="#tab92" role="tab"
+           aria-controls="nav-home" aria-selected="false">Response</a>
+
+        
+        
+
+    </div>
+</nav>
+
+<div class="tab-content" id="9">
+
+
+
+
+
+
+
+
+<div class="tab-pane fade show active" id="tab91" role="tabpanel" aria-labelledby="nav-tabName1">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --location --request GET <span style="color:#4e9a06">&#39;http://localhost:8080/nuix-restful-service/svc/v2/cases/43b070164ce8453ca30ed9e2dfcce67b/search?query=item-set-originals:HelloItemSet&amp;metadataProfile=Default&amp;numberOfRecordsRequested=5&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--header <span style="color:#4e9a06">&#39;nuix-auth-token: 9729a460-eda7-48dc-ba70-d12b3aae3c8d&#39;</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tab-pane fade" id="tab92" role="tabpanel" aria-labelledby="nav-tabName2">
+
+    <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;request&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#34;caseId&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;43b070164ce8453ca30ed9e2dfcce67b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;query&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;item-set-originals:HelloItemSet&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;sortField&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;sortOrder&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;startIndex&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;numberOfRecordsRequested&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;deduplicate&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;metadataProfile&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Default&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;fieldList&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;customMetadataList&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;propertyList&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;itemParameterizedFields&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;showAvailableThumbnails&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;useCache&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;forceCacheDelete&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;searchRetry&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;relationType&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;entities&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[],</span>
+        <span style="color:#4e9a06">&#34;s&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;p&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;customMetadataField&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;property&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;field&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#4e9a06">&#34;startedOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613594869418</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;completedOn&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1613594869432</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;elapsedTimeForSearch&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">9</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;elapsedTimeForSort&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;elapsedTimeForMarshal&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;elapsedTimeForDeduplicate&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;elapsedTotal&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">14</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;metadataItems&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;Path Name&#34;</span>
+    <span style="color:#000;font-weight:bold">],</span>
+    <span style="color:#4e9a06">&#34;localizedMetadataItems&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;Path Name&#34;</span>
+    <span style="color:#000;font-weight:bold">],</span>
+    <span style="color:#4e9a06">&#34;metadataItemDetails&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;localisedName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;String&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;localisedName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;String&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;localisedName&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;String&#34;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">],</span>
+    <span style="color:#4e9a06">&#34;resultList&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Nuix Evidence File&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;d29719c8-517e-48cb-9fd6-983dd2d6671b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;75f02dfe-989d-4f93-aade-cd4334042254&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Directory&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;doc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/d29719c8-517e-48cb-9fd6-983dd2d6671b&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;97806413-9715-48ed-a08c-03fc0c79f8b9&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Nuix Evidence File&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;e1746668-8eca-48b2-a8bd-14f17c59c1e1&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;668c6144-071d-420e-9fe5-a11bd63e2326&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Nuix Evidence File&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;8c970c8e-8e9d-4dcb-bb42-07d2980a6b3f&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;087eb560-5e5b-4c7e-a745-028602ce0104&#34;</span>
+        <span style="color:#000;font-weight:bold">},</span>
+        <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#34;File Type&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;Directory&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;api&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;Path Name&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;/d29719c8-517e-48cb-9fd6-983dd2d6671b/doc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;guid&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;dfb9d2b2-3a5b-4013-9c6d-1ed44910d49a&#34;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">],</span>
+    <span style="color:#4e9a06">&#34;count&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">386</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#4e9a06">&#34;deduplicatedCount&#34;</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">386</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+
+</div>
+
+
+
+
+</div>
+
+    
+    
+    <div class="text-muted mt-5 pt-3 border-top">Last modified January 1, 0001
+</div>
+</div>
+
+      </main>
+    </div>
+  </div>
+  
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Twitter" aria-label="Twitter">
+    <a class="text-white" target="_blank" href="https://www.twitter.com/nuix">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Stack Overflow" aria-label="Stack Overflow">
+    <a class="text-white" target="_blank" href="https://stackoverflow.com/jobs/companies/nuix">
+      <i class="fab fa-stack-overflow"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" href="https://github.com/NuixSoftware">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Community Help Forums" aria-label="Community Help Forums">
+    <a class="text-white" target="_blank" href="https://forums.nuix.com/">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2021 Nuix All Rights Reserved</small>
+        <small class="ml-1"><a href="https://www.nuix.com/privacy-policy" target="_blank">Privacy Policy</a></small>
+	
+		<p class="mt-2"><a href="../../../getting-started/rest/introduction/about.html">Part 1: Verifying your Installation</a></p>
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="../../../js/main.min.664f21bf5eb0c31ebc661e2616e6c63e0448cec6d5636d869957be423c3cb952.js" integrity="sha256-Zk8hv16wwx68Zh4mFubGPgRIzsbVY22GmVe&#43;Qjw8uVI=" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
