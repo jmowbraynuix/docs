@@ -1,10 +1,14 @@
 [
-    {
-      "version": "v9.1",
-      "url": "https://jmowbraynuix.github.io/docs/versions/9.1/"
-    },
-    {
-      "version": "v9.0",
-      "url": "https://jmowbraynuix.github.io/docs/versions/9.0/"
-    }
-  ]
+  {
+    "version": "v9.1",
+    "url": "https://jmowbraynuix.github.io/docs/versions/9.1/"
+  },
+  {
+    "version": "v9.0",
+    "url": "https://jmowbraynuix.github.io/docs/versions/9.0/"
+  },
+  {
+    "version": "v18.0.0-master",
+    "url": "https://jmowbraynuix.github.io/docs/versions/18.0.0-master/"
+  }
+]
