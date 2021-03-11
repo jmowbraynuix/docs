@@ -10,5 +10,9 @@
   {
     "version": "v18.0.0-master",
     "url": "https://jmowbraynuix.github.io/docs/versions/18.0.0-master/"
+  },
+  {
+    "version": "v18.0.0-hosted-hugo",
+    "url": "https://jmowbraynuix.github.io/docs/versions/18.0.0-hosted-hugo/"
   }
 ]
