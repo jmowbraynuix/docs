@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.74.3" />
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="shortcut icon" href="../../favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="../../favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../../favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="../../favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="../../favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="../../favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../../favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="../../favicons/android-192x192.png" sizes="192x192">
+
+<title>Using the Java Engine | </title><meta property="og:title" content="Using the Java Engine" />
+<meta property="og:description" content="Learn how to integrate Nuix into your existing workflows using the Java Engine.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/getting-started/java_engine/java-engine.html" />
+<meta property="article:published_time" content="2017-01-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-01-05T00:00:00+00:00" />
+<meta itemprop="name" content="Using the Java Engine">
+<meta itemprop="description" content="Learn how to integrate Nuix into your existing workflows using the Java Engine.
+">
+<meta itemprop="datePublished" content="2017-01-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2017-01-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1646">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using the Java Engine"/>
+<meta name="twitter:description" content="Learn how to integrate Nuix into your existing workflows using the Java Engine.
+"/>
+
+
+
+
+
+<link rel="preload" href="../../scss/main.min.83b6c00985b3107d4adc1d26018be0c01cbab3d0a8b254fa28cfe1c1cd3a6808.css" as="style">
+<link href="../../scss/main.min.83b6c00985b3107d4adc1d26018be0c01cbab3d0a8b254fa28cfe1c1cd3a6808.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://unpkg.com/lunr@2.3.8/lunr.min.js"
+  integrity="sha384-vRQ9bDyE0Wnu+lMfm57BlYLO0/XauFuKpVsZPs7KEDwYKktWi5+Kz3MP8++DFlRY"
+  crossorigin="anonymous"></script>
+
+
+
+  <title>Using the Java Engine | </title>
+</head>
+<body class="td-page">
+<header>
+  
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="../../">
+		<span class="navbar-logo"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 354.78 112.16"><defs><style>.cls-1{fill:#fff}</style></defs><path class="cls-1" d="M347 183.9l15.09 23.39s10.15-13.53 14.12-19.6c7.15-10.93 16.95-7.85 16.95-7.85l-24.12 34.75 22.17 32.8H378.11L362.3 222.52l-16.46 24.87H333.12L355.68 215 334.16 183.9z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M117.77 188.44A51.43 51.43.0 00106 165.22l-4.12-4.65h-.08c-.5-.07-1-.1-1.53-.16-.79-.08-1.57-.18-2.37-.23-.55.0-1.1.0-1.65-.06-.76.0-1.51-.07-2.27-.07s-1.52.05-2.28.08c-.57.0-1.15.0-1.73.07-.79.06-1.59.17-2.38.26-.54.07-1.08.1-1.62.18-.86.13-1.72.31-2.58.48-.47.09-.93.16-1.4.26-1.31.29-2.63.64-3.93 1a55.81 55.81.0 00-30.35 84.35l6 1.71a51 51 0 0026.41.39l.36-.1a55.69 55.69.0 0137.32-59.92C117.81 188.69 117.8 188.57 117.77 188.44z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M147.74 199.68a56.38 56.38.0 00-6.15-13.61 54.88 54.88.0 00-23.84-20.86 56.53 56.53.0 00-8.23-3.06h0a56 56 0 0112.8 25.32h0c.32 1.52.57 3.05.77 4.6A55.73 55.73.0 0185.76 252c-1.47.51-3 1-4.47 1.35h0l-.75.16c-.89.21-1.77.42-2.67.59h0l-.9.14h-.24.0l-.91.14-1.38.21h0-.15c-.41.05-.83.07-1.25.11h0c-.53.05-1.07.12-1.61.15h-.48-.33-1.17.0c-.57.0-1.14.05-1.71.05h-.3c-.47.0-.93.0-1.4-.05h-.73-.58-1 0c-.74-.06-1.48-.15-2.21-.23h-.06l-.58-.06-.87-.1h0c-.82-.11-1.63-.27-2.45-.43h0l-1.23-.22h0c-.75-.16-1.49-.36-2.24-.55l-.91-.23L52.7 253h-.18.0a57.15 57.15.0 0036.17 18.52c.91.09 1.82.16 2.74.21.31.0.62.0.93.0.61.0 1.22.0 1.84.0h.46c1.06.0 2.12-.05 3.18-.11l.92-.07c1.19-.09 2.38-.21 3.58-.39h.25c1.12-.17 2.25-.38 3.37-.62l.92-.21c1.2-.28 2.41-.58 3.6-.94A55.86 55.86.0 00147.74 199.68z" transform="translate(-38.4 -159.55)"/><rect class="cls-1" x="271.55" y="24.35" width="11.54" height="63.49"/><path class="cls-1" d="M322 166a6.43 6.43.0 11-6.43-6.43A6.42 6.42.0 01322 166" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M298.08 247.47a11.38 11.38.0 01-10.69-10.18h-.26a23.26 23.26.0 01-20.6 11.59c-9.78.0-21.51-5.53-21.51-27.29V183.85h11.33v35.67c0 11.85 3.75 20 13.91 20a16.28 16.28.0 0014.94-10.43 15.56 15.56.0 001-5.79V183.85h11.84z" transform="translate(-38.4 -159.55)"/><path class="cls-1" d="M180.29 183.77A11.37 11.37.0 01191 194h.26a23.26 23.26.0 0120.6-11.59c9.78.0 21.51 5.53 21.51 27.29v37.74H222V211.71c0-11.84-3.75-20-13.91-20a16.29 16.29.0 00-14.94 10.43 15.57 15.57.0 00-1 5.79v39.41H180.29z" transform="translate(-38.4 -159.55)"/></svg></span><span class="text-uppercase font-weight-bold"></span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link active" href="../../" ><span class="active">Documentation</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block">
+
+
+<input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="&#xf002; Search this site…"
+  aria-label="Search this site…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="../../offline-search-index.c5533dc63185a49c572340d4300819b6ebb04f5ce13ddec44d2ceffae84118734cd339e0bd28f9df3bb0db441449c7bfa769ae3ede743be73dda503e7aa9eb7d.json"
+  data-offline-search-base-href="../../"
+  data-offline-search-max-results="10"
+>
+
+</div>
+</nav>
+
+</header>
+<div class="container-fluid td-outer">
+  <div class="td-main">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+        
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+    
+    <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+        
+        
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../overview.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Overview</a>
+    </li>
+    <ul>
+        <li class="collapse " id="overviewhtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started.html" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Getting Started</a>
+    </li>
+    <ul>
+        <li class="collapse show" id="getting-startedhtml">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started/rest.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Nuix REST SDK</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedresthtml">
+            
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started/rest/installation.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Installation</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestinstallationhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationwindowshtml" href="../../getting-started/rest/installation/windows.html">Windows</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationlinuxhtml" href="../../getting-started/rest/installation/linux.html">Linux</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestinstallationdockerhtml" href="../../getting-started/rest/installation/docker.html">Docker</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started/rest/configuration.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Configuration</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestconfigurationhtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestconfigurationlicenseconfigurationhtml" href="../../getting-started/rest/configuration/licenseconfiguration.html">Licensing</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestconfigurationunifiedlogginghtml" href="../../getting-started/rest/configuration/unifiedlogging.html">Unified Logging</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started/rest/scripting.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">User Scripts</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestscriptinghtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingintroductionhtml" href="../../getting-started/rest/scripting/introduction.html">Introduction</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingelasticsearchcasesubsethtml" href="../../getting-started/rest/scripting/elasticsearchcasesubset.html">Elasticsearch Case Subset</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingtagginghtml" href="../../getting-started/rest/scripting/tagging.html">Tagging</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestscriptingcustomprocessinghtml" href="../../getting-started/rest/scripting/customprocessing.html">Custom Processing</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../getting-started/rest/quick_start.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Quick Start</a>
+    </li>
+    <ul>
+        <li class="collapse " id="getting-startedrestquick_starthtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startenvironmentsetuphtml" href="../../getting-started/rest/quick_start/environmentsetup.html">Environment Setup</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startcheckingserverstatushtml" href="../../getting-started/rest/quick_start/checkingserverstatus.html">Server Status</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startlicensemanagementhtml" href="../../getting-started/rest/quick_start/licensemanagement.html">License Management</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startinventorymanagementhtml" href="../../getting-started/rest/quick_start/inventorymanagement.html">Inventory Management</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrestquick_startprocessingdatahtml" href="../../getting-started/rest/quick_start/processingdata.html">Processing Data</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-getting-startedrunning_scriptsrunning-scriptshtml" href="../../getting-started/running_scripts/running-scripts.html">Running Scripts In Nuix Workstation</a>
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page  active" id="m-getting-startedjava_enginejava-enginehtml" href="../../getting-started/java_engine/java-engine.html">Using the Java Engine</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../examples.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Nuix on GitHub</a>
+    </li>
+    <ul>
+        <li class="collapse " id="exampleshtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../tutorials.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tutorials</a>
+    </li>
+    <ul>
+        <li class="collapse " id="tutorialshtml">
+            
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+            
+            
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+    <li class="td-sidebar-nav__section-title">
+        <a  href="../../reference.html" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
+    </li>
+    <ul>
+        <li class="collapse " id="referencehtml">
+            
+            
+            
+            
+            
+            
+            <a class="td-sidebar-link td-sidebar-link__page " id="m-reference_openapihtml" href="../../reference/_openapi.html">Open API Documentation</a>
+            
+            
+        </li>
+    </ul>
+</ul>
+
+            
+            
+        </li>
+    </ul>
+</ul>
+
+    </nav>
+</div>
+
+
+
+      </div>
+      <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+        
+
+
+
+
+
+
+
+
+
+
+
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#initializing-the-engine">Initializing the Engine</a>
+      <ul>
+        <li><a href="#create-a-globalcontainer">Create a GlobalContainer</a></li>
+        <li><a href="#obtaining-a-dongle-license">Obtaining a Dongle License</a></li>
+        <li><a href="#obtaining-a-server-license">Obtaining a Server License</a></li>
+        <li><a href="#simple-example">Simple Example</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+        <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../getting-started.html">Getting Started</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="../../getting-started/java_engine/java-engine.html">Using the Java Engine</a>
+</li>
+
+	</ol>
+</nav	>
+
+        
+<div class="td-content">
+    <h1>Using the Java Engine</h1>
+    <div class="lead">Learn how to integrate Nuix into your existing workflows using the Java Engine.</div>
+    <h2 id="overview">Overview</h2>
+<p>When you <a href="../../docs/getting-started/scripting/running-scripts">run a script in Nuix</a> you can think of your script as being at an inner most level in a series of nested technologies:</p>
+<p><img src="../../images/NuixLayers1.png" alt=""></p>
+<p>A Java Virtual Machine (<a href="https://en.wikipedia.org/wiki/Java_virtual_machine">JVM</a>) executes the code of Nuix.  Nuix in turn relies on one of several interpreter libraries to run your script:</p>
+<ul>
+<li><a href="https://www.jruby.org/">JRuby</a> to run <a href="https://www.ruby-lang.org/en/">Ruby</a> code</li>
+<li><a href="https://www.jython.org/">Jython</a> to run <a href="https://www.python.org/">Python</a> code</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino">Rhino</a> to run <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMA</a> Script (AKA Javascript) code</li>
+</ul>
+<p>Your script then makes calls into the Nuix API (which is written in Java) facilitated by the intervening interpreter which provides a translation layer between your script&rsquo;s code and the Nuix API.  The interpreter presents objects exposed by the Nuix API in a manner which makes them seem (mostly) native to the scripting language you employ.</p>
+<p>When using the Java Engine API, this concept is inverted slightly.  Rather than Nuix using an interpreter such as JRuby to run your script&rsquo;s code, your Java code runs in the JVM and then invokes methods in the Nuix API:</p>
+<p><img src="../../images/NuixLayers2.png" alt=""></p>
+<p>This provides several benefits:</p>
+<ul>
+<li>You can develop your code in an Integrated Development Environment (IDE) such as <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://www.jetbrains.com/idea/">IntelliJ</a> or <a href="https://netbeans.org/">NetBeans</a>.</li>
+<li>Write your code in the <a href="https://en.wikipedia.org/wiki/Type_system#Static_and_dynamic_type_checking_in_practice">statically typed</a> language Java.</li>
+<li>Compile your code into a single <a href="https://en.wikipedia.org/wiki/JAR_(file_format)">JAR</a> file rather than having a series of script files.</li>
+</ul>
+<p>This also means that the code you write has some additional work to perform before making use of the Nuix API.  When <a href="../../docs/getting-started/scripting/running-scripts">running a script</a> in Nuix Workstation, either through the Graphical User Interface (GUI) or <code>nuix_console.exe</code> (the &ldquo;headless&rdquo; version of Nuix Workstation), you can rely on a few things having already happened:</p>
+<ul>
+<li>Nuix has started and therefore the Nuix Engine has been initialized.</li>
+<li>A license has been obtained.</li>
+</ul>
+<p>When developing an application using the Java Engine API, your code is responsible for taking the steps to initialize the Nuix Engine and get it licensed before you begin interacting with the Nuix API.</p>
+<h2 id="setup">Setup</h2>
+<p>The first thing you need to do is download a Nuix Java Engine API release.  This contains all the Nuix code and dependencies.  The latest release of the Java Engine API can be downloaded here:</p>
+<p><a href="https://download.nuix.com/releases/engine">https://download.nuix.com/releases/engine</a></p>
+<p>Once downloaded, extract the contents of the downloaded Zip file to a directory accessible to your IDE.  Ideally the directory name should be relatively short, for example:</p>
+<p><code>C:\engine-releases\8.0.3.121</code></p>
+
+
+<div class="alert alert-primary" role="alert">
+<h4 class="alert-heading">Note</h4>
+Storing the engine release in a longer directory name can pose potential issues later when Nuix Worker processes are started for something Processing, OCR or Exporting due to the way some information is passed to the workers about the class path.
+</div>
+
+<p>Additionally you need to add some entries into the PATH environment variable so that Nuix can resolve some of its dependencies properly at run-time.  The PATH environment variable needs entries pointing to the <code>bin</code> and <code>bin/x86</code> sub-directories of the engine release.  For example, if you have extracted your engine release to  <code>C:\engine-releases\8.0.3.121</code> you will want to add the following directories to you <code>PATH</code> environment variable:</p>
+<ul>
+<li><code>C:\engine-releases\8.0.3.121\bin</code></li>
+<li><code>C:\engine-releases\8.0.3.121\bin\x86 </code></li>
+</ul>
+<p>Created a new Java project in your IDE of choice.  Add all the JAR files in the lib sub-directory of the engine release directory.  For example if you have extracted your engine release to  <code>C:\engine-releases\8.0.3.121</code> then you will want to add all the JAR files in the directory  <code>C:\engine-releases\8.0.3.121\lib</code> to your project&rsquo;s build path.</p>
+<h2 id="initializing-the-engine">Initializing the Engine</h2>
+<p>In this section we are going to review the basic steps needed to initialize the engine.  For a more detailed implementation with some additional features, check out the <a href="https://github.com/Nuix/Nuix-Java-Engine-Baseline/blob/master/Java/src/main/java/com/nuix/javaenginesimple/EngineWrapper.java">EngineWrapper</a> class in the GitHub repository <a href="https://github.com/Nuix/Nuix-Java-Engine-Baseline">Nuix Java Engine Baseline</a>. That project provides a baseline implementation which can be used for your own project.</p>
+<p>Before your code can make use of the Nuix Java Engine API, several steps need to be accomplished:</p>
+<ul>
+<li>A GlobalContainer instance must be created (if one does not already exist).</li>
+<li>An Engine instance needs to be created.</li>
+<li>That Engine instance needs some basic configuration.</li>
+<li>That Engine instance needs to be licensed by acquiring a license from a license source.</li>
+<li>Once licensed, we can obtain the Utilities object from our engine instance.  This Utilities object acts as our entry point into the rest of the API&rsquo;s functionality.</li>
+</ul>
+<h3 id="create-a-globalcontainer">Create a GlobalContainer</h3>
+<p>Their can only be one GlobalContainer instance per JVM.  In many scenarios your code will likely create a GlobalContainer and Engine instance, make use of the API and then dispose of those things when done with them.  In a more advanced scenario you may instead wish to create a GlobalContainer instance and then instantiate and dispose of Engine instances throughout the lifetime of your application.</p>
+<p>You create a GlobalContainer instance using the nuix.engine.GlobalContainerFactory:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.GlobalContainer</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.GlobalContainerFactory</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+<span style="color:#000">GlobalContainer</span> <span style="color:#000">container</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">GlobalContainerFactory</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">newContainer</span><span style="color:#ce5c00;font-weight:bold">();</span>
+</code></pre></div><p>Once you have your GlobalContainer instance you can create an Engine instance.   When we create our Engine instance we will need to specify a couple settings:</p>
+<ul>
+<li><strong>user</strong> - The user associated with the session, used by the engine to associate a user&rsquo;s actions to them in case history events.</li>
+<li><strong>userDataDirs</strong> - A directory containing some engine configuration data.  Each engine release comes with a recommended base line user data directory in the user-data sub directory.  For example, if you extracted your engine release to <code>C:\engine-releases\8.0.3.121</code> then you will want to specify <code>C:\engine-releases\8.0.3.121\user-data</code>.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8f5902;font-style:italic">//Define our engine configuration settings
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Map</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">engineConfiguration</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HashMap</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;();</span>
+<span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;user&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">System</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getProperty</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;user.name&#34;</span><span style="color:#ce5c00;font-weight:bold">));</span>
+<span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;userDataDirs&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">userDataDirs</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">//Create an engine instance
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">engine</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">container</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">newEngine</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">);</span>
+</code></pre></div><h3 id="obtaining-a-dongle-license">Obtaining a Dongle License</h3>
+<p>Before you can interact with the Nuix Engine API, your engine instance must be licensed.  We obtain a license by first obtaining a Licensor from the Engine instance we created.  You then ask the Licensor to seek out available licenses, acquiring one of your choosing.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#8f5902;font-style:italic">// Get our engine instance licensor
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Licensor</span> <span style="color:#000">licensor</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getLicensor</span><span style="color:#ce5c00;font-weight:bold">();</span>
+
+<span style="color:#8f5902;font-style:italic">// Define where we want the licensor to look for a license
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Map</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licenseOptions</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HashMap</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;();</span>
+<span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;sources&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#4e9a06">&#34;dongle&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">// Ask licensor to see what available licenses it can find
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Iterable</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">AvailableLicence</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licences</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">licensor</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">findAvailableLicences</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">// Iterate available licenses, we can then inspect properties of each
+</span><span style="color:#8f5902;font-style:italic">// license we iterate, acquiring the one that meets our needs, below
+</span><span style="color:#8f5902;font-style:italic">// we just acquire the first available license.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">for</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">AvailableLicence</span> <span style="color:#000">license</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">licences</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+	<span style="color:#000">license</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">acquire</span><span style="color:#ce5c00;font-weight:bold">();</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></div><p>Once you have acquired a license, your Engine instance is licensed.  You may then obtain a Utilities object using the method Engine.getUtilities.  From the Utilities object the rest of the Nuix Engine API is available.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">Utilities</span> <span style="color:#000">utilities</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getUtilities</span><span style="color:#ce5c00;font-weight:bold">();</span>
+</code></pre></div><p>It is important to note that the Engine object implements <a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/io/Closeable.html">Closeable</a> meaning it has a <code>close()</code> method.  Calling the <code>close()</code> method releases the license held by the Engine instance, so you will want to call it when you are done using the Nuix Engine API (but not before!).</p>
+<h3 id="obtaining-a-server-license">Obtaining a Server License</h3>
+<p>Obtaining a license from a Nuix Management Server (license server) is similar to obtaining a license from a dongle with a few extra steps:</p>
+<ul>
+<li>You will want to specify where the license server is located.  While the license discovery process may be able to determine this on its own eventually, its best to point it in the right direction.</li>
+<li>You will want to provide credentials used to authenticate with the license server.</li>
+<li>Your engine instance and the license server communicate over a secure channel, but the engine expects your code to determine whether the certificate of the license server can be trusted or not.</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000">String</span> <span style="color:#000">userName</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Nuix&#34;</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#000">String</span> <span style="color:#000">password</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Password&#34;</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+<span style="color:#8f5902;font-style:italic">// Specify location of license server
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">System</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getProperties</span><span style="color:#ce5c00;font-weight:bold">().</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;nuix.registry.servers&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;127.0.0.1&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">// Here is where we provide the engine with logic that will
+</span><span style="color:#8f5902;font-style:italic">// either trust or reject certificate of license server, below
+</span><span style="color:#8f5902;font-style:italic">// example trusts all certificates.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">whenAskedForCertificateTrust</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">CertificateTrustCallback</span><span style="color:#ce5c00;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+	<span style="color:#5c35cc;font-weight:bold">@Override</span>
+	<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CertificateTrustCallbackInfo</span> <span style="color:#000">info</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+		<span style="color:#000">System</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">out</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">println</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Trusting certificate blindly!&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+		<span style="color:#000">info</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setTrusted</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#ce5c00;font-weight:bold">);</span>
+	<span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">});</span>
+
+<span style="color:#8f5902;font-style:italic">// We provide credentials for authenticating with the license server
+</span><span style="color:#8f5902;font-style:italic">// through this callback.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">whenAskedForCredentials</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">CredentialsCallback</span><span style="color:#ce5c00;font-weight:bold">(){</span>
+	<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">execute</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">CredentialsCallbackInfo</span> <span style="color:#000">info</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+		<span style="color:#000">info</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setUsername</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">userName</span><span style="color:#ce5c00;font-weight:bold">);</span>
+		<span style="color:#000">info</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">setPassword</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">password</span><span style="color:#ce5c00;font-weight:bold">);</span>
+	<span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">});</span>
+
+<span style="color:#8f5902;font-style:italic">// Get our engine instance licensor
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Licensor</span> <span style="color:#000">licensor</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getLicensor</span><span style="color:#ce5c00;font-weight:bold">();</span>
+
+<span style="color:#8f5902;font-style:italic">// Define where we want the licensor to look for a license
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Map</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licenseOptions</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HashMap</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;();</span>
+<span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;sources&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#4e9a06">&#34;server&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">// Ask licensor to see what available licenses it can find
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">Iterable</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">AvailableLicence</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licences</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">licensor</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">findAvailableLicences</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+<span style="color:#8f5902;font-style:italic">// Iterate available licenses, we can then inspect properties of each
+</span><span style="color:#8f5902;font-style:italic">// license we iterate, acquiring the one that meets our needs, below
+</span><span style="color:#8f5902;font-style:italic">// we just acquire the first available license.
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">for</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">AvailableLicence</span> <span style="color:#000">license</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">licences</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+	<span style="color:#000">license</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">acquire</span><span style="color:#ce5c00;font-weight:bold">();</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></div><h3 id="simple-example">Simple Example</h3>
+<p>Note this example just demonstrates the basic steps involved and does not include proper error handling.  See the <a href="https://github.com/Nuix/Nuix-Java-Engine-Baseline/blob/master/Java/src/main/java/com/nuix/javaenginesimple/EngineWrapper.java">EngineWrapper</a> class in the <a href="https://github.com/Nuix/Nuix-Java-Engine-Baseline">Nuix Java Engine Baseline repository on GitHub</a> for a more fleshed out implementation.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">com.nuix.engineexample</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.Utilities</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.AvailableLicence</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.Engine</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.GlobalContainer</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.GlobalContainerFactory</span><span style="color:#ce5c00;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">nuix.engine.Licensor</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">EngineSetup</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+	<span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">static</span> <span style="color:#000">GlobalContainer</span> <span style="color:#000">container</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+	<span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">static</span> <span style="color:#000">Utilities</span> <span style="color:#000">intializeEngine</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">File</span> <span style="color:#000">userDataDirs</span><span style="color:#ce5c00;font-weight:bold">){</span>
+		<span style="color:#000">Engine</span> <span style="color:#000">engine</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#ce5c00;font-weight:bold">;</span>
+
+		<span style="color:#8f5902;font-style:italic">// Create global container if it does not already exist
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#204a87;font-weight:bold">if</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">container</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#ce5c00;font-weight:bold">){</span>
+			<span style="color:#000">container</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">GlobalContainerFactory</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">newContainer</span><span style="color:#ce5c00;font-weight:bold">();</span>
+		<span style="color:#ce5c00;font-weight:bold">}</span>
+
+		<span style="color:#8f5902;font-style:italic">//Define our engine configuration settings
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#000">Map</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">engineConfiguration</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HashMap</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;();</span>
+		<span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;user&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">System</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getProperty</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;user.name&#34;</span><span style="color:#ce5c00;font-weight:bold">));</span>
+		<span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;userDataDirs&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">userDataDirs</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+		<span style="color:#8f5902;font-style:italic">//Create an engine instance
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#000">engine</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">container</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">newEngine</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">engineConfiguration</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+		<span style="color:#8f5902;font-style:italic">// Get our engine instance licensor
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#000">Licensor</span> <span style="color:#000">licensor</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getLicensor</span><span style="color:#ce5c00;font-weight:bold">();</span>
+
+		<span style="color:#8f5902;font-style:italic">// Define where we want the licensor to look for a license
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#000">Map</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licenseOptions</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">HashMap</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">String</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#000">Object</span><span style="color:#ce5c00;font-weight:bold">&gt;();</span>
+		<span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">put</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#4e9a06">&#34;sources&#34;</span><span style="color:#ce5c00;font-weight:bold">,</span><span style="color:#4e9a06">&#34;dongle&#34;</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+		<span style="color:#8f5902;font-style:italic">// Ask licensor to see what available licenses it can find
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#000">Iterable</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">AvailableLicence</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">licences</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">licensor</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">findAvailableLicences</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">licenseOptions</span><span style="color:#ce5c00;font-weight:bold">);</span>
+
+		<span style="color:#8f5902;font-style:italic">// Iterate available licenses, we can then inspect properties of each
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// license we iterate, acquiring the one that meets our needs, below
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// we just acquire the first available license.
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#204a87;font-weight:bold">for</span><span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#000">AvailableLicence</span> <span style="color:#000">license</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">licences</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">{</span>
+			<span style="color:#000">license</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">acquire</span><span style="color:#ce5c00;font-weight:bold">();</span>
+		<span style="color:#ce5c00;font-weight:bold">}</span>
+
+		<span style="color:#8f5902;font-style:italic">// If everything has worked up to this point, our engine instance should
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// be licensed, so now we can obtain the Utilities object from the engine
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// and return it to the caller.  The Utilities object then acts as the
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// entry point into the rest of the API.
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">//
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// Note: Engine.close() should be called when we are done using the API and
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// ready to release the obtained license.  In this example we are expecting
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#8f5902;font-style:italic">// the caller will do this!
+</span><span style="color:#8f5902;font-style:italic"></span>		<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">engine</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#c4a000">getUtilities</span><span style="color:#ce5c00;font-weight:bold">();</span>
+	<span style="color:#ce5c00;font-weight:bold">}</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
+</code></pre></div>
+    
+    
+    <div class="text-muted mt-5 pt-3 border-top">Last modified January 5, 2017
+</div>
+</div>
+
+      </main>
+    </div>
+  </div>
+  
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Twitter" aria-label="Twitter">
+    <a class="text-white" target="_blank" href="https://www.twitter.com/nuix">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Stack Overflow" aria-label="Stack Overflow">
+    <a class="text-white" target="_blank" href="https://stackoverflow.com/jobs/companies/nuix">
+      <i class="fab fa-stack-overflow"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" href="https://github.com/NuixSoftware">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Community Help Forums" aria-label="Community Help Forums">
+    <a class="text-white" target="_blank" href="https://forums.nuix.com/">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2021 Nuix All Rights Reserved</small>
+        <small class="ml-1"><a href="https://www.nuix.com/privacy-policy" target="_blank">Privacy Policy</a></small>
+	
+		
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="../../js/main.min.664f21bf5eb0c31ebc661e2616e6c63e0448cec6d5636d869957be423c3cb952.js" integrity="sha256-Zk8hv16wwx68Zh4mFubGPgRIzsbVY22GmVe&#43;Qjw8uVI=" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
