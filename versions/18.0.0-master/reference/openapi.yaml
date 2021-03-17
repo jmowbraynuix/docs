@@ -2697,7 +2697,7 @@ paths:
       tags:
         - Analysis
       summary: Deletes a markup set
-      description: Use this operation to create a case and a redaction markup. Markup sets are applied to PDF's and used to revise sensitive content.
+      description: Use this operation to delete a redaction markup set.
       operationId: deleteMarkupSet
       parameters:
         - name: caseId
@@ -5005,7 +5005,7 @@ paths:
               type: string
         - name: entities
           in: query
-          description: List of entity names to include in response (e.g. company,email
+          description: List of entity names to include in response (e.g. company, email)
           required: false
           schema:
             type: array
@@ -5013,7 +5013,7 @@ paths:
               type: string
       responses:
         "200":
-          description: default response
+          description: "The response is a map that represents a Nuix item that is described using the following schema: Map <String, Object>"
           content:
             application/vnd.nuix.v1+json:
               schema:
@@ -5247,7 +5247,7 @@ paths:
                 - uri
       responses:
         "200":
-          description: default response
+          description: "The response is a map that represents a Nuix item that is described using the following schema: Map <String, Object>"
           content:
             application/vnd.nuix.v1+json:
               schema:
@@ -5696,6 +5696,59 @@ paths:
                       tags:
                         - processing
                         - ocr
+  /cluster/queue:
+    get:
+      tags:
+        - System
+      summary: Returns the state of the REST cluster queue.
+      description: Use this operation to get the state of the REST cluster queue.
+      operationId: getQueueState
+      parameters:
+        - name: taskStatus
+          in: query
+          description: An optional task status to filter results on.
+          required: false
+          schema:
+            type: string
+            enum:
+              - NOT_STARTED
+              - IN_PROGRESS
+              - COMPLETE
+              - CANCELLED
+              - ERROR
+              - UNKNOWN
+      responses:
+        "200":
+          description: default response
+          content:
+            application/vnd.nuix.v1+json:
+              schema:
+                $ref: '#/components/schemas/QueueStateTaskRequestAsyncFunctionObject'
+              example:
+                capacity: 8192,
+                head: 0
+                tail: 0
+                size: 1
+                tasks:
+                  - type: "com.nuix.us.ws.function.AsyncBulkIngestionFunction"
+                    processedBy: nuix-restful-server-2
+                    caseId: ade5dcd9587d4509bb021d822afe82b6
+                    status: IN_PROGRESS
+        "500":
+          description: Cluster not enabled
+          content:
+            application/vnd.nuix.v1+json:
+              schema:
+                $ref: '#/components/schemas/RestErrorResponse'
+              example:
+                developerMessage: An unknown error has occurred.
+                userMessage: An unknown error has occurred.
+                additionalInfo:
+                  nuixErrorMap:
+                    NuixException: Clustering is not enabled.  To view the queue restart the service with cluster.enabled=true
+                  rootExceptionClass: com.nuix.us.ws.exception.NuixServiceConfigurationException
+                  rootExceptionMessage: Clustering is not enabled.  To view the queue restart the service with cluster.enabled=true
+                errorCode: UNKNOWN
   /cases/{caseId}/itemSets/{itemSetName}:
     get:
       tags:
@@ -13823,6 +13876,53 @@ components:
           description: An array of tags applied to the node.  This can be used for node filtering when processing in a cluster.
           items:
             type: string
+    QueueStateTaskRequestAsyncFunctionObject:
+      type: object
+      properties:
+        capacity:
+          type: integer
+          description: The capacity of the queue.
+          format: int64
+        head:
+          type: integer
+          description: The head of the queue.
+          format: int64
+        tail:
+          type: integer
+          description: The tail of the queue.
+          format: int64
+        size:
+          type: integer
+          description: The size of the queue.
+        tasks:
+          type: array
+          description: The filtered array of tasks in the queue.
+          items:
+            $ref: '#/components/schemas/TaskRequestAsyncFunctionObject'
+    TaskRequestAsyncFunctionObject:
+      type: object
+      properties:
+        processedBy:
+          type: string
+          description:  The name of the server processing the task.
+        url:
+          type: string
+          writeOnly: true
+          description: The URL of the server.
+        body:
+          type: string
+          writeOnly: true
+          description:  The body of the task.
+        status:
+          type: string
+          description:  The task status.
+          enum:
+            - NOT_STARTED
+            - IN_PROGRESS
+            - COMPLETE
+            - CANCELLED
+            - ERROR
+            - UNKNOWN
     ProductionSetResponse:
       type: object
       properties:
